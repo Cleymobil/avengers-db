@@ -10,7 +10,6 @@ import java.util.Set;
 
 import io.avengers.domain.Movie;
 
-
 public class MovieDao {
 
 	static Class c;
@@ -28,7 +27,7 @@ public class MovieDao {
 
 	public Set<Movie> findAll() throws SQLException {
 
-		String query = "SELECT * FROM movie";
+		String query = "SELECT name FROM movie";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
@@ -69,9 +68,13 @@ public class MovieDao {
 
 		connect.close();
 		return movies;
-
+		
 	}
 
+	public Set<Movie> findMovieData(String name) throws SQLException{
+		Set<Movie> movieData=findMoviesByName(name);
+		return movieData;
+	}
 	Movie resultSetToMovie(ResultSet resultSet) {
 
 		try {
@@ -92,6 +95,10 @@ public class MovieDao {
 		}
 
 	}
+	
+	
+	
+
 
 	Connection connectToMySql() {
 		Connection connect;
@@ -103,4 +110,8 @@ public class MovieDao {
 		}
 
 	}
+	
+	
+	
+	
 }

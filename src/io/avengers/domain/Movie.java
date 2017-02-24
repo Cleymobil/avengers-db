@@ -1,5 +1,7 @@
 package io.avengers.domain;
 
+import java.util.Arrays;
+
 public class Movie {
 
 	int id;
@@ -20,11 +22,6 @@ public class Movie {
 
 	}
 
-	@Override
-	public String toString() {
-		
-		return this.name;
-	}
 	public int getId() {
 		return id;
 	}
@@ -79,6 +76,13 @@ public class Movie {
 
 	public void setBudget(long budget) {
 		this.budget = budget;
+	}
+
+	@Override
+	public String toString() {
+		return "\nid=" + this.id + ",\n name=" + this.name + ",\n picture=" + Arrays.toString(picture) + ",\n date="
+				+ this.date + ",\n history=" + this.history + ",\n gross=" + this.gross + ",\n budget=" + this.budget
+				+ "\n";
 	}
 
 }
