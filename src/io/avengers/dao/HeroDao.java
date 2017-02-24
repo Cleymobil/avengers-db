@@ -51,7 +51,7 @@ public class HeroDao {
 
 	public Set<Hero> findHeroesByName(String term) throws SQLException {
 
-		String query = "SELECT * FROM heroes h WHERE name LIKE %" + term + "% ORDER BY h.name";
+		String query = "SELECT * FROM heroes h WHERE name LIKE '%" + term + "%' ORDER BY h.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
@@ -80,8 +80,11 @@ public class HeroDao {
 			String sSex = resultSet.getString("sex");
 			Long likes = resultSet.getLong("likes");
 			Long dislikes = resultSet.getLong("dislikes");
+			byte[] picture= resultSet.getBytes("picture");
+			String abilities=resultSet.getString("abilities");
+			String history=resultSet.getString("history");
 
-			Hero h = new Hero(id, name, Sex.O, likes, dislikes);
+			Hero h = new Hero(id, name, Sex.O, likes, dislikes,picture,abilities,history);
 
 			return h;
 

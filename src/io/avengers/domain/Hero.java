@@ -7,13 +7,24 @@ public class Hero {
 	Sex sex;
 	long likes;
 	long dislikes;
+	byte[] picture;
+	String abilities;
+	String history;
+	String team;
+	String irl;
+	
 
-	public Hero(int id, String name, Sex sex, long likes, long dislikes) {
+	public Hero(int id, String name, Sex sex, long likes, long dislikes, byte[] picture, String abilities, String history) {
 		this.id = id;
 		this.name = name;
 		this.sex = sex;
 		this.likes = likes;
 		this.dislikes = dislikes;
+		this.picture=picture;
+		this.abilities = abilities;
+		this.history=history;
+		this.team=null;
+		this.irl=null;
 	}
 
 	@Override
@@ -31,6 +42,46 @@ public class Hero {
 
 	public String getName() {
 		return name;
+	}
+
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+
+	public String getAbilities() {
+		return abilities;
+	}
+
+	public void setAbilities(String abilities) {
+		this.abilities = abilities;
+	}
+
+	public String getHistory() {
+		return history;
+	}
+
+	public void setHistory(String history) {
+		this.history = history;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+	public String getIrl() {
+		return irl;
+	}
+
+	public void setIrl(String irl) {
+		this.irl = irl;
 	}
 
 	public void setName(String name) {
