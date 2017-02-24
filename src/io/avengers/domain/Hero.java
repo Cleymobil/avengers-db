@@ -13,6 +13,9 @@ public class Hero {
 	String team;
 	String irl;
 	
+	public Hero(){
+	
+	}
 
 	public Hero(int id, String name, Sex sex, long likes, long dislikes, byte[] picture, String abilities, String history) {
 		this.id = id;
