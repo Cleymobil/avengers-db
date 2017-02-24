@@ -18,21 +18,18 @@ public class HeroDao {
 	public HeroDao() {
 		if (c == null) {
 			try {
-				c = Class.forName("com.mysql.jdbc.Driver");
+				c = Class.forName("com.mysql.jdbc.Driver"); // define as static
 			} catch (ClassNotFoundException e) {
-				throw new IllegalStateException("SQLDriver is not here: " + e.getMessage());
+				throw new IllegalStateException("MySql driver is not here: " + e.getMessage());
 
 			}
 		}
-
 	}
 
-	public Set<Hero> findAll() throws SQLException{
+	public Set<Hero> findAll() throws SQLException {
 
 		String query = "SELECT * FROM heroes";
 
-		// Class.forName("com.mysql.jdbc.Driver"); already defined as a static
-		// in HeroDao's constructor
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
@@ -48,12 +45,12 @@ public class HeroDao {
 		}
 
 		connect.close();
-
 		return heroes;
 
 	}
 
-	public Set<Hero> findHeroesByName(String term) throws SQLException  {
+	public Set<Hero> findHeroesByName(String term) throws SQLException {
+
 		String query = "SELECT * FROM heroes h WHERE name LIKE %" + term + "% ORDER BY h.name";
 
 		// port 3306, no password
@@ -71,7 +68,6 @@ public class HeroDao {
 		}
 
 		connect.close();
-
 		return heroes;
 
 	}
@@ -88,7 +84,8 @@ public class HeroDao {
 			Hero h = new Hero(id, name, Sex.O, likes, dislikes);
 
 			return h;
-		} catch (SQLException e) {
+
+		} catch (Exception e) {
 			throw new IllegalStateException("Database has been compromised: " + e.getMessage());
 		}
 
@@ -104,5 +101,4 @@ public class HeroDao {
 		}
 
 	}
-
 }
