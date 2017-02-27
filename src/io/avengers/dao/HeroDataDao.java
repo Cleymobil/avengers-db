@@ -1,29 +1,16 @@
 package io.avengers.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
+
 
 import io.avengers.domain.Hero;
 import io.avengers.domain.Sex;
 
-public class HeroDataDao {
-
-	static Class c;
-
-	public HeroDataDao() {
-		if (c == null) {
-			try {
-				c = Class.forName("com.mysql.jdbc.Driver"); // define as static
-			} catch (ClassNotFoundException e) {
-				throw new IllegalStateException("MySql driver is not here: " + e.getMessage());
-			}
-		}
-	}
+public class HeroDataDao extends MarvelDao{
 
 	public Hero findHeroData(String term) throws SQLException {
 
@@ -83,17 +70,6 @@ public class HeroDataDao {
 
 		} catch (Exception e) {
 			throw new IllegalStateException("Database has been compromised: " + e.getMessage());
-		}
-
-	}
-
-	Connection connectToMySql() {
-		Connection connect;
-		try {
-			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/marvel", "root", "");
-			return connect;
-		} catch (SQLException e) {
-			throw new IllegalStateException("Wrong credentials or url, or overloaded connection: " + e.getMessage());
 		}
 
 	}
