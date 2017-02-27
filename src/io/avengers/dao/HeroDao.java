@@ -69,7 +69,6 @@ public class HeroDao {
 
 		connect.close();
 		return heroes;
-
 	}
 
 	Hero resultSetToHero(ResultSet resultSet) {
@@ -80,11 +79,11 @@ public class HeroDao {
 			String sSex = resultSet.getString("sex");
 			Long likes = resultSet.getLong("likes");
 			Long dislikes = resultSet.getLong("dislikes");
-			byte[] picture= resultSet.getBytes("picture");
-			String abilities=resultSet.getString("abilities");
-			String history=resultSet.getString("history");
+			byte[] picture = resultSet.getBytes("picture");
+			String abilities = resultSet.getString("abilities");
+			String history = resultSet.getString("history");
 
-			Hero h = new Hero(id, name, Sex.O, likes, dislikes,picture,abilities,history);
+			Hero h = new Hero(id, name, Sex.O, likes, dislikes, picture, abilities, history);
 
 			return h;
 
