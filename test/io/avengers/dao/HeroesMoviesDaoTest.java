@@ -26,7 +26,14 @@ public class HeroesMoviesDaoTest {
 
 	@Test
 	public void testFindMoviesByHeroesname() throws SQLException {
+		boolean movieFound = false;
 		assertTrue(heroesMoviesDao.findMoviesByHeroesname("Spiderman").size() >= 1);
+		for (String h : heroesMoviesDao.findMoviesByHeroesname("Spiderman")) {
+			if (h.equals("Spider-Man")) {
+				movieFound = true;
+			}
+		}
+		assertTrue(movieFound);
 	}
 
 }
