@@ -13,6 +13,7 @@ public class HeroDataService {
 		
 		try {
 			return new HeroDataDao().findHeroData(term);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw stateException;

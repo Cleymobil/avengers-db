@@ -51,7 +51,7 @@ public class HeroDataDao extends MarvelDao{
 		return h;
 
 	}
-
+/*
 	Hero resultSetToHero(ResultSet resultSet) {
 
 		try {
@@ -73,4 +73,5 @@ public class HeroDataDao extends MarvelDao{
 		}
 
 	}
+	*/
 }

@@ -6,7 +6,7 @@ public class TestApplicationHeroData {
 
 	public static void main(String[] args) throws Exception {
 		HeroDataService service = new HeroDataService();
-		System.out.println(service.findHeroData("Antman").getTeam());
+		System.out.println(service.findHeroData("Hulk").getIrl());
 
 	}
 }
