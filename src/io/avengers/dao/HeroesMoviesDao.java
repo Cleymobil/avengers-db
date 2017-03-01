@@ -32,7 +32,7 @@ public class HeroesMoviesDao extends MarvelDao {
 		return moviesHeroes;
 
 	}
-	String resultSetToHeroesMovies(ResultSet resultSet) {
+	private String resultSetToHeroesMovies(ResultSet resultSet) {
 
 		try {
 			
