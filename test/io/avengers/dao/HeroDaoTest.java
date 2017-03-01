@@ -36,10 +36,10 @@ public class HeroDaoTest {
 	@Test
 	public void testFindHeroesByName() throws Exception {
 
-		assertTrue(dao.findHeroesByName("Spiderman").size() == 1);
-		assertFalse(dao.findHeroesByName("Spiderman").size() == 3);
+		assertTrue(dao.findHeroesByName("SpiderMan").size() == 1);
+		assertFalse(dao.findHeroesByName("SpiderMan").size() == 3);
 
-		Hero spiderMan = dao.findHeroesByName("Spiderman").iterator().next();
+		Hero spiderMan = dao.findHeroesByName("SpiderMan").iterator().next();
 
 		assertTrue(dao.findHeroesByName("i").contains(spiderMan));
 		assertFalse(dao.findHeroesByName("o").contains(spiderMan));
