@@ -11,19 +11,19 @@ public class TestApplicationMovie {
 
 		
 		
-		// MovieService service = new MovieService();
-		// System.out.println(service.findAll());
+		MovieService service = new MovieService();
+		 //System.out.println(service.findAll());
 
 		// recherche tous les films pareil au nom
-		// Set<Movie> movies = service.findMoviesByName("man");
-		// for (Movie m : movies){
-		// System.out.println(m.getName());
-		// }
+		 Set<Movie> movies = service.findMoviesByName("man");
+		 for (Movie m : movies){
+		 System.out.println(m.getName());
+		}
 
 		// chercher la data d'un film
 
 		// MovieService service = new MovieService();
-		// System.out.println(service.findMoviesByName("Avengers"));
+		//System.out.println(service.findMoviesByName(""));
 
 		// System.out.println(service.findMovieData("Avengers"));
 

@@ -15,7 +15,7 @@ public class MovieDao extends MarvelDao{
 
 	public Set<Movie> findAll() throws SQLException {
 
-		String query = "SELECT name FROM movie";
+		String query = "SELECT * FROM movie";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
