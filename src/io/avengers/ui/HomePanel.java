@@ -45,6 +45,9 @@ public class HomePanel extends JPanel {
 		JButton btnNewButton_6 = new JButton("New button");
 		panel.add(btnNewButton_6);
 		
+		JButton btnNewButton_7 = new JButton("New button");
+		panel.add(btnNewButton_7);
+		
 		JButton btnNewButton_5 = new JButton("New button");
 		panel.add(btnNewButton_5);
 
