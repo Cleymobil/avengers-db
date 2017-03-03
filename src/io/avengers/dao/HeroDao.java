@@ -19,7 +19,7 @@ public class HeroDao extends MarvelDao{
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
-
+		
 		Statement statement = connect.createStatement();
 		ResultSet resultSet = statement.executeQuery(query);
 
