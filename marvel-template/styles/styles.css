@@ -1,17 +1,15 @@
 body{
 	font-size: 18px; 
-	color: white;
-	background-color:red;
+	color: black;
+	background-color:white;
 	font-family: "Comic Sans MS";
-	p {
- 		 line-height: 1.5em;
-	}
+	
 
 }
 
 h1{
 	font-size: 2em;/* == 36px, body a la taille de reference*/
-	color: white;
+	color: black;
 	text-align: center;
 	letter-spacing: 10px;
 	background-color:black;
@@ -30,7 +28,7 @@ h3{
 }
 
 nav{
-	color: white;
+	color: black;
 }
 
 
@@ -128,7 +126,7 @@ span.intro{
 	}
 
 a {
-	color: white;
+	color: black;
 	font-size: 120%;
 }
 

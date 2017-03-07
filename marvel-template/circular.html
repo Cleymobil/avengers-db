@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <style>
+        .rotater {
+            margin-top: 500px;
+            margin-left: 200px;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+        }
+
+
+
+
+        .rotater>div {
+            transform-origin: 0% 0%;
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            padding-left: 5em;
+            /*background-color: red;*/
+            /*border: 1px solid black;*/
+            transition-duration: 0.3s;
+        }
+
+
+        .rotater>div:hover {
+            font-size: 110%;
+            transition-duration: 0.3s;
+        }
+
+
+
+
+        .rotater>div:nth-child(2) {
+            transform: rotateZ(72deg)
+        }
+
+
+
+
+        .rotater>div:nth-child(3) {
+            transform: rotateZ(144deg)
+        }
+
+
+
+
+        .rotater>div:nth-child(4) {
+            transform: rotateZ(216deg)
+        }
+
+
+
+        .rotater>div:nth-child(5) {
+            transform: rotateZ(288deg)
+        }
+    </style>
+
+    <script type="text/javascript">
+        document.addEventListener('load', function () {
+        });
+    </script>
+</head>
+
+<body>
+    <div class='rotater'>
+        <div>HEROES</div>
+        <div>TITI</div>
+        <div>TOTO</div>
+        <div>DKJHGD</div>
+        <div>HDJG</div>
+    </div>
+</body>
+
+</html>

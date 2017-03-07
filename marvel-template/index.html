@@ -5,102 +5,218 @@
 	<title>Marvel.io Sublime Website</title>
 	<meta charset="utf-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="styles/styles.css">
-	<link rel="stylesheet" type="text/css" href="styles/table.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			position: absolute;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			margin: 0;
+			font-size: 22px;
+		}
 
+		header {
+			order: 1;
+			flex: 0 0 auto;
+			background-color: white;
+			margin: 0;
+			color: black;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: center;
+			padding-top: 10px;
+		}
 
+		footer {
+			order: 3;
+			flex: 0 0 auto;
+			background-color: white;
+			padding-top: 5px;
+			padding-left: 5px;
+			padding-bottom: 5px;
+			font-size: 0.5em;
+		}
+
+		main {
+			order: 2;
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			background-color: white;
+			
+			width: 100%;
+			height: 100%;
+		}
+
+		.photomenu {}
+
+		.menu {
+			flex: 0 0 auto;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			width: 300px;
+			height: 300px;
+			padding-top: 150px;
+			padding-left: 220px;
+			margin-bottom: -150px;
+			margin-right: -100px;
+		}
+
+		.menu>div {
+			transform-origin: 0% 0%;
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			padding-left: 8em;
+			/*background-color: red;*/
+			/*border: 1px solid black;*/
+			transition-duration: 0.3s;
+		}
+
+		.menu>div:hover {
+			font-size: 110%;
+			transition-duration: 0.3s;
+		}
+
+		.menu>div:nth-child(2) {
+			transform: rotateZ(45deg);
+		}
+
+		.menu>div:nth-child(2)>p {
+			transform: rotateX(315deg);
+			transform: rotateZ(315deg);
+		}
+
+		.menu>div:nth-child(3) {
+			transform: rotateZ(90deg);
+		}
+
+		.menu>div:nth-child(3)>p {
+			transform: rotateX(270deg);
+			transform: rotateZ(270deg);
+		}
+
+		.menu>div:nth-child(4) {
+			transform: rotateZ(135deg)
+		}
+
+		.menu>div:nth-child(4)>p {
+			transform: rotateX(225deg);
+			transform: rotateZ(225deg);
+		}
+
+		.menu>div:nth-child(5) {
+			transform: rotateZ(180deg);
+		}
+
+		.menu>div:nth-child(5)>p {
+			transform: rotateX(180deg);
+			transform: rotateZ(180deg);
+		}
+
+		.menu>div:nth-child(6) {
+			transform: rotateZ(225deg);
+		}
+
+		.menu>div:nth-child(6)>p {
+			transform: rotateX(135deg);
+			transform: rotateZ(135deg);
+		}
+
+		.menu>div:nth-child(7) {
+			transform: rotateZ(270deg)
+		}
+
+		.menu>div:nth-child(7)>p {
+			transform: rotateX(90deg);
+			transform: rotateZ(90deg);
+		}
+
+		.menu>div:nth-child(8) {
+			transform: rotateZ(315deg);
+		}
+
+		.menu>div:nth-child(8)>p {
+			transform: rotateX(45deg);
+			transform: rotateZ(45deg);
+		}
+
+		.menu>div>p {
+			display: block;
+			-webkit-margin-before: 0em;
+			-webkit-margin-after: 0em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+			
+		}
+		.menu>div>p:hover{
+			font-size: 110%;
+		} 
+		.menu1{
+			background-image: url(spiderman1.png) ;
+			background-size: auto 100% ;
+  			background-repeat: no-repeat;
+
+			  background-position: center center; 
+		}
+	</style>
 </head>
 
 <body>
-	<div id="page">
-		<div id="entete">
-			<header>
-				<div id="copydoc">Marvel.io Website - &copy;2017</div>
-				<center>
-					<h1>Marvel by <span class="cool">Avengers</span> for <span class="cool">Avengers</span> Website</h1>
-				</center>
-			</header>
+
+	<header>
+		<div class="homephoto"> 
+			
+			<center><img src="Images/AvengersHome5.png" style="width:500px;height:400px;"></center>
+
 		</div>
-		<div id="corps">
-			<div id="menu">
-				<nav>
-					<ul>
-						<li> <a class="resaltar1" href="#heroes">Heroes</a></li>
-						<li> <a class="resaltar2" href="#movies">Movies</a></li>
-						<li> <a class="resaltar3" href="#teams">Teams</a></li>
-					</ul>
-				</nav>
-			</div>
-			<div id="contenu">
-
-				<h2 class="introduction">
-					<u>Introduction</u>
-				</h2>
-				<!-- This is an image-->
-
-				<div class="fr">
-					<center><img src="images/marvelheroes.png" alt="all marvel"></center><br/>
+	</header>
+	<main>
+				
+		<div class="menu1">
+			<div class="menu">
+				<div>
+					<p>Heroes</p>
 				</div>
-
-				<p>
-					<strong> Marvel Comics </strong> is the common name and primary imprint of Marvel Worldwide Inc., formerly Marvel Publishing,
-					Inc. and Marvel Comics Group, an American publisher of comic books and related media. In 2009, The Walt Disney Company
-					acquired Marvel Entertainment, Marvel Worldwide's parent company.
-					<center>
-						<p>We are now going to introduce you <strong> Marvel World</strong> and <strong>Marvel Heroes</strong>.</p>
-					</center>
-				</p>
-
-				<h2 id="heroes">
-					<u>Heroes</u>
-				</h2>
-				<center><img src="images/superherosbd.png" /></center>
-				<h3>Wolverine</h3>
-				<center><img src="images/wolverine.png" /></center>
-				<h3>Hulk</h3>
-				<center><img src="images/Hulk.png" /></center>
-				<p><a href="heroes/spiderman.html">Spiderman</a> is the most famous hero</p>
-				<p>Also feature:
-					<ol type="I" start="1">
-						<li>Captain America</li>
-						<li>Ironman</li>
-						<li>Captain Marvel</li>
-						<li>Thor</li>
-					</ol>
-				</p>
-				<h2 id="movies">
-					<u>Movies</u>
-				</h2>
-				<h3>Avengers</h3>
-				<p>Best rated Movie</p>
-				<center><img src="images/avengers.png" /></center>
-				<h3>Civil-war</h3>
-				<p> First Movie Civil war</p>
-				<center><img src="images/civilwar.jpg" /></center>
-
-				<h2 id="teams">Teams</h2>
-				<p>
-					<dl>
-						<dt>Avengers</dt>
-						<dd>Hulk</dd>
-						<dd>Captain America</dd>
-						<dd>Ironman</dd>
-						<dt>Xmen</dt>
-						<dd>Wolverine</dd>
-						<dd>IceMan</dd>
-						<dd>Mystic</dd>
-					</dl>
-
-				</p>
-
-				<h3>Avengers</h3>
-				<center><img src="images/marvel_characters_02.png" /></center>
-				<h3>X-men</h3>
-				<center><img src="images/X-Men-PNG.png" /></center>
-
-				<footer>Information toke from <a href="http://marvel.com/comics">Marvel</footer>
+				<div>
+					<p>Movies</p>
+				</div>
+				<div>
+					<p>News</p>
+				</div>
+				<div>
+					<p>Shop</p>
+				</div>
+				<div>
+					<p>Marvel</p>
+				</div>
+				<div>
+					<p>Enfants</p>
+				</div>
+				<div>
+					<p>Forum</p>
+				</div>
+				<div>
+					<p>BD</p>
+				</div>
 			</div>
 		</div>
-	</div>
-	</body>
+	</main>
+	<footer>
+		Information toke from <a href="http://marvel.com/comics">Marvel
+</footer>
+</body>
 </html>
