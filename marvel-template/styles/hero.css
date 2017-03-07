@@ -1,0 +1,54 @@
+body {
+    text-align: center;
+}
+
+.herosImage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: stretch;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+#mainPartOfThePage{
+    color: black;
+    background-color: white;
+    background-image: url(spiderman1.png);
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    flex-grow: 6;
+    flex-shrink: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
+
+}
+#header {
+    background-color: red;
+    color: white;
+    align-self: flex-start;
+    flex: 0 0 3em;
+    align-content: stretch;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    }
+#footer {
+    font-size: 50%;
+    display: flex;
+    background-color: black;
+    color: white;
+    width: 100%;
+    order: 3;
+    align-self: flex-end;
+    bottom: 0;
+    flex: 0 0 auto;
+}
+
