@@ -1,0 +1,149 @@
+body{
+	font-size: 18px; 
+	color: white;
+	background-color:red;
+	font-family: "Comic Sans MS";
+	p {
+ 		 line-height: 1.5em;
+	}
+
+}
+
+h1{
+	font-size: 2em;/* == 36px, body a la taille de reference*/
+	color: white;
+	text-align: center;
+	letter-spacing: 10px;
+	background-color:black;
+
+}
+h2{
+	border: 2px dotted darkred;
+	 padding: 3px 5px 5px 5px;
+     padding-left: 44px;
+     margin-left: 14px;
+}
+h3{
+	text-decoration: underline;
+	padding-left: 10px;
+
+}
+
+nav{
+	color: white;
+}
+
+
+section{
+	margin:2em;
+	
+	
+}
+
+footer{
+	font-size: 50%
+}
+
+table{
+	margin: 0px auto;
+}
+
+span.cool{
+	color: darkred;
+}
+
+header div{
+
+	font-style: italic;
+	font-size-adjust: 1em;
+}
+form{
+		text-align: center;
+}
+span.intro{
+	position: relative;
+	
+	width: 50%;
+
+
+}
+
+.resaltar1:hover{
+	font-size: 130%;
+
+}
+.resaltar2:hover{
+	font-size: 130%;
+
+}
+.resaltar3:hover{
+	font-size: 130%;
+
+}
+
+#page{
+	position: absolute;
+     top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background-color: red;
+}
+
+#entete{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	height: 200px;
+	background-color: black;
+}
+#corps{
+	position: absolute;
+	top: 170px;
+	left: 10px;
+	right: 10px;
+	bottom: 10px;
+	background-color: grey;
+	}
+#contenu{
+	padding-left: 15px;
+	padding-right: 10px;
+	position: absolute;
+	top: 10px;
+	left: 170px;
+	bottom: 10px;
+	right: 10px;
+	background-color: #B40404;
+	overflow: auto;
+	}
+#menu{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	bottom: 10px;
+	width: 150px;
+	background-color: darkred;
+
+	}
+
+a {
+	color: white;
+	font-size: 120%;
+}
+
+.fr{
+float: left;
+
+}
+
+#heroes{
+	clear: both;
+}
+#introduction{
+	text-align: center;
+}
+#copydoc{
+	font-size: 70%;
+	padding-left: 5px;
+}
