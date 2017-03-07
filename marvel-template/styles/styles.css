@@ -1,147 +1,163 @@
-body{
-	font-size: 18px; 
-	color: black;
-	background-color:white;
-	font-family: "Comic Sans MS";
-	
+		body {
+			position: absolute;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			margin: 0;
+			font-size: 22px;
+		}
 
-}
+		header {
+			order: 1;
+			flex: 0 0 auto;
+			background-color: white;
+			margin: 0;
+			color: black;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: center;
+			padding-top: 10px;
+		}
 
-h1{
-	font-size: 2em;/* == 36px, body a la taille de reference*/
-	color: black;
-	text-align: center;
-	letter-spacing: 10px;
-	background-color:black;
+		footer {
+			order: 3;
+			flex: 0 0 auto;
+			background-color: white;
+			padding-top: 5px;
+			padding-left: 5px;
+			padding-bottom: 5px;
+			font-size: 0.5em;
+		}
 
-}
-h2{
-	border: 2px dotted darkred;
-	 padding: 3px 5px 5px 5px;
-     padding-left: 44px;
-     margin-left: 14px;
-}
-h3{
-	text-decoration: underline;
-	padding-left: 10px;
+		main {
+			order: 2;
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			background-color: white;
+			
+			width: 100%;
+			height: 100%;
+		}
 
-}
+		.photomenu {}
 
-nav{
-	color: black;
-}
+		.menu {
+			flex: 0 0 auto;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+			width: 300px;
+			height: 300px;
+			padding-top: 150px;
+			padding-left: 220px;
+			margin-bottom: -150px;
+			margin-right: -100px;
+		}
 
+		.menu>div {
+			transform-origin: 0% 0%;
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			padding-left: 8em;
+			/*background-color: red;*/
+			/*border: 1px solid black;*/
+			transition-duration: 0.3s;
+		}
 
-section{
-	margin:2em;
-	
-	
-}
+		.menu>div:hover {
+			font-size: 110%;
+			transition-duration: 0.3s;
+		}
 
-footer{
-	font-size: 50%
-}
+		.menu>div:nth-child(2) {
+			transform: rotateZ(45deg);
+		}
 
-table{
-	margin: 0px auto;
-}
+		.menu>div:nth-child(2)>p {
+			transform: rotateX(315deg);
+			transform: rotateZ(315deg);
+		}
 
-span.cool{
-	color: darkred;
-}
+		.menu>div:nth-child(3) {
+			transform: rotateZ(90deg);
+		}
 
-header div{
+		.menu>div:nth-child(3)>p {
+			transform: rotateX(270deg);
+			transform: rotateZ(270deg);
+		}
 
-	font-style: italic;
-	font-size-adjust: 1em;
-}
-form{
-		text-align: center;
-}
-span.intro{
-	position: relative;
-	
-	width: 50%;
+		.menu>div:nth-child(4) {
+			transform: rotateZ(135deg)
+		}
 
+		.menu>div:nth-child(4)>p {
+			transform: rotateX(225deg);
+			transform: rotateZ(225deg);
+		}
 
-}
+		.menu>div:nth-child(5) {
+			transform: rotateZ(180deg);
+		}
 
-.resaltar1:hover{
-	font-size: 130%;
+		.menu>div:nth-child(5)>p {
+			transform: rotateX(180deg);
+			transform: rotateZ(180deg);
+		}
 
-}
-.resaltar2:hover{
-	font-size: 130%;
+		.menu>div:nth-child(6) {
+			transform: rotateZ(225deg);
+		}
 
-}
-.resaltar3:hover{
-	font-size: 130%;
+		.menu>div:nth-child(6)>p {
+			transform: rotateX(135deg);
+			transform: rotateZ(135deg);
+		}
 
-}
+		.menu>div:nth-child(7) {
+			transform: rotateZ(270deg)
+		}
 
-#page{
-	position: absolute;
-     top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    background-color: red;
-}
+		.menu>div:nth-child(7)>p {
+			transform: rotateX(90deg);
+			transform: rotateZ(90deg);
+		}
 
-#entete{
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	right: 10px;
-	height: 200px;
-	background-color: black;
-}
-#corps{
-	position: absolute;
-	top: 170px;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
-	background-color: grey;
-	}
-#contenu{
-	padding-left: 15px;
-	padding-right: 10px;
-	position: absolute;
-	top: 10px;
-	left: 170px;
-	bottom: 10px;
-	right: 10px;
-	background-color: #B40404;
-	overflow: auto;
-	}
-#menu{
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	bottom: 10px;
-	width: 150px;
-	background-color: darkred;
+		.menu>div:nth-child(8) {
+			transform: rotateZ(315deg);
+		}
 
-	}
+		.menu>div:nth-child(8)>p {
+			transform: rotateX(45deg);
+			transform: rotateZ(45deg);
+		}
 
-a {
-	color: black;
-	font-size: 120%;
-}
+		.menu>div>p {
+			display: block;
+			-webkit-margin-before: 0em;
+			-webkit-margin-after: 0em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+			
+		}
+		.menu>div>p:hover{
+			font-size: 110%;
+		} 
+		.menu1{
+			background-image: url(spiderman1.png) ;
+			background-size: auto 100% ;
+  			background-repeat: no-repeat;
 
-.fr{
-float: left;
-
-}
-
-#heroes{
-	clear: both;
-}
-#introduction{
-	text-align: center;
-}
-#copydoc{
-	font-size: 70%;
-	padding-left: 5px;
-}
+			  background-position: center center; 
+		}
