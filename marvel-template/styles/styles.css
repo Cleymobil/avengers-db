@@ -1,9 +1,8 @@
-		body {
-			position: absolute;
+body {
 			position: absolute;
 			height: 100%;
 			width: 100%;
-			margin-top: 0;
+			margin-top: 10px;
 			margin-bottom: 0;
 			padding: 0;
 			display: flex;
@@ -11,9 +10,10 @@
 			flex-wrap: nowrap;
 			margin: 0;
 			font-size: 22px;
+			
 		}
 
-		header {
+header {
 			order: 1;
 			flex: 0 0 auto;
 			background-color: white;
@@ -25,7 +25,7 @@
 			padding-top: 10px;
 		}
 
-		footer {
+footer {
 			order: 3;
 			flex: 0 0 auto;
 			background-color: white;
@@ -35,7 +35,7 @@
 			font-size: 0.5em;
 		}
 
-		main {
+main {
 			order: 2;
 			flex: 1 1 auto;
 			display: flex;
@@ -49,9 +49,8 @@
 			height: 100%;
 		}
 
-		.photomenu {}
-
-		.menu {
+.menu {
+			font-weight: bold;	
 			flex: 0 0 auto;
 			display: flex;
 			flex-direction: column;
@@ -64,7 +63,7 @@
 			margin-right: -100px;
 		}
 
-		.menu>div {
+.menu>div {
 			transform-origin: 0% 0%;
 			height: 50px;
 			width: 50px;
@@ -75,75 +74,75 @@
 			transition-duration: 0.3s;
 		}
 
-		.menu>div:hover {
+.menu>div:hover {
 			font-size: 110%;
 			transition-duration: 0.3s;
 		}
 
-		.menu>div:nth-child(2) {
+.menu>div:nth-child(2) {
 			transform: rotateZ(45deg);
 		}
 
-		.menu>div:nth-child(2)>p {
+.menu>div:nth-child(2)>p {
 			transform: rotateX(315deg);
 			transform: rotateZ(315deg);
 		}
 
-		.menu>div:nth-child(3) {
+.menu>div:nth-child(3) {
 			transform: rotateZ(90deg);
 		}
 
-		.menu>div:nth-child(3)>p {
+.menu>div:nth-child(3)>p {
 			transform: rotateX(270deg);
 			transform: rotateZ(270deg);
 		}
 
-		.menu>div:nth-child(4) {
+.menu>div:nth-child(4) {
 			transform: rotateZ(135deg)
 		}
 
-		.menu>div:nth-child(4)>p {
+.menu>div:nth-child(4)>p {
 			transform: rotateX(225deg);
 			transform: rotateZ(225deg);
 		}
 
-		.menu>div:nth-child(5) {
+.menu>div:nth-child(5) {
 			transform: rotateZ(180deg);
 		}
 
-		.menu>div:nth-child(5)>p {
+.menu>div:nth-child(5)>p {
 			transform: rotateX(180deg);
 			transform: rotateZ(180deg);
 		}
 
-		.menu>div:nth-child(6) {
+.menu>div:nth-child(6) {
 			transform: rotateZ(225deg);
 		}
 
-		.menu>div:nth-child(6)>p {
+.menu>div:nth-child(6)>p {
 			transform: rotateX(135deg);
 			transform: rotateZ(135deg);
 		}
 
-		.menu>div:nth-child(7) {
+.menu>div:nth-child(7) {
 			transform: rotateZ(270deg)
 		}
 
-		.menu>div:nth-child(7)>p {
+.menu>div:nth-child(7)>p {
 			transform: rotateX(90deg);
 			transform: rotateZ(90deg);
 		}
 
-		.menu>div:nth-child(8) {
+.menu>div:nth-child(8) {
 			transform: rotateZ(315deg);
 		}
 
-		.menu>div:nth-child(8)>p {
+.menu>div:nth-child(8)>p {
 			transform: rotateX(45deg);
 			transform: rotateZ(45deg);
 		}
 
-		.menu>div>p {
+.menu>div>p {
 			display: block;
 			-webkit-margin-before: 0em;
 			-webkit-margin-after: 0em;
@@ -151,13 +150,29 @@
 			-webkit-margin-end: 0px;
 			
 		}
-		.menu>div>p:hover{
+.menu>div>p:hover{
 			font-size: 110%;
 		} 
-		.menu1{
+.menu1{
 			background-image: url(spiderman1.png) ;
 			background-size: auto 100% ;
   			background-repeat: no-repeat;
 
 			  background-position: center center; 
 		}
+@media (max-width: 750px) {
+	.homephoto {
+		width:auto;
+		height:auto;
+		flex: 1 0 auto;
+			} 
+		 }
+	.body{
+		flex: 1 1 auto;
+		flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+		margin-right: 0px;
+	}
