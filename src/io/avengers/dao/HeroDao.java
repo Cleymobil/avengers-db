@@ -37,7 +37,7 @@ public class HeroDao extends MarvelDao{
 	}
 
 	public Set<Hero> findHeroesByName(String term) throws SQLException {
-
+		
 		String query = "SELECT * FROM heroes h WHERE name LIKE '%" + term + "%' ORDER BY h.name";
 
 		// port 3306, no password
