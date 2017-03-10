@@ -57,7 +57,27 @@ public class HeroDao extends MarvelDao {
 		connect.close();
 		return heroes;
 	}
+	public Set<Hero> findHeroesById(int id) throws SQLException {
+		
+		String query = "SELECT * FROM heroes h WHERE id LIKE '%" + id + "%' ORDER BY h.name";
 
+		// port 3306, no password
+		Connection connect = connectToMySql();
+
+		Statement statement = connect.createStatement();
+		ResultSet resultSet = statement.executeQuery(query);
+
+		Set<Hero> heroes = new HashSet<>();
+
+		while (resultSet.next()) {
+
+			heroes.add(resultSetToHero(resultSet));
+
+		}
+
+		connect.close();
+		return heroes;
+	}
 	Hero resultSetToHero(ResultSet resultSet) {
 
 		try {
