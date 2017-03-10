@@ -36,7 +36,7 @@ public class HeroService {
 			throw stateException;
 		}
 	}
-	public Set<Hero> findHeroesById(int id){
+	public Hero findHeroesById(int id){
 		
 		try {
 			return new HeroDao().findHeroesById(id);

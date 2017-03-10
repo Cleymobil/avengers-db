@@ -193,4 +193,9 @@ public class Hero {
 		String pict = "data:image/jpeg;base64," + new String(encodedImage);
 		return pict;
 	}
+
+	public void add(Hero resultSetToHero) {
+		// TODO Auto-generated method stub
+		
+	}
 }
