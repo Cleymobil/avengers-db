@@ -15,11 +15,8 @@ public class Hero {
 	String team;
 	String irl;
 
-	public Hero() {
 
-	}
-
-	public Hero(int id, String name, Sex sex, long likes, long dislikes, byte[] picture, String abilities,
+	public Hero(int id, String name, Sex sex,String realName, long likes, long dislikes, byte[] picture, String abilities,
 			String history) {
 		this.id = id;
 		this.name = name;
@@ -31,6 +28,15 @@ public class Hero {
 		this.history = history;
 		this.team = null;
 		this.irl = null;
+	}
+
+	public Hero(int id2, String name2, Sex o, Long likes2, Long dislikes2, byte[] picture2, String abilities2,
+			String history2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Hero() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

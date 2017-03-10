@@ -10,16 +10,16 @@ import java.util.Set;
 import io.avengers.domain.Hero;
 import io.avengers.domain.Sex;
 
-public class HeroDao extends MarvelDao{
+public class HeroDao extends MarvelDao {
 
-	
 	public Set<Hero> findAll() throws SQLException {
 
-		String query = "SELECT * FROM heroes";
+		String query = "SELECT h.id AS hero_id, h.name AS name,h.sex sex, h.picture heroPicture, h.abilities heroHabilities, irl.name AS realName "
+				+ "FROM heroes h " + "LEFT JOIN `irl` irl ON h.id = irl.hero_id " + "ORDER BY h.name ASC";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
-		
+
 		Statement statement = connect.createStatement();
 		ResultSet resultSet = statement.executeQuery(query);
 
@@ -37,7 +37,7 @@ public class HeroDao extends MarvelDao{
 	}
 
 	public Set<Hero> findHeroesByName(String term) throws SQLException {
-		
+
 		String query = "SELECT * FROM heroes h WHERE name LIKE '%" + term + "%' ORDER BY h.name";
 
 		// port 3306, no password
@@ -63,6 +63,7 @@ public class HeroDao extends MarvelDao{
 		try {
 			int id = resultSet.getInt("id");
 			String name = resultSet.getString("name");
+			String realName = resultSet.getString("realName");
 			String sSex = resultSet.getString("sex");
 			Long likes = resultSet.getLong("likes");
 			Long dislikes = resultSet.getLong("dislikes");
@@ -70,7 +71,7 @@ public class HeroDao extends MarvelDao{
 			String abilities = resultSet.getString("abilities");
 			String history = resultSet.getString("history");
 
-			Hero h = new Hero(id, name, Sex.O, likes, dislikes, picture, abilities, history);
+			Hero h = new Hero(id, name, Sex.O ,realName, likes, dislikes, picture, abilities, history);
 
 			return h;
 

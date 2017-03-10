@@ -29,6 +29,7 @@ public class HeroDataDao extends MarvelDao{
 			try {
 				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
+			
 				String sSex = resultSet.getString("sex");
 				Long likes = resultSet.getLong("likes");
 				Long dislikes = resultSet.getLong("dislikes");
