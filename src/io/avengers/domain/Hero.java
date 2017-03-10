@@ -1,6 +1,7 @@
 package io.avengers.domain;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 public class Hero {
 
@@ -15,9 +16,8 @@ public class Hero {
 	String team;
 	String irl;
 
-
-	public Hero(int id, String name, Sex sex,String realName, long likes, long dislikes, byte[] picture, String abilities,
-			String history) {
+	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
+			String abilities, String history) {
 		this.id = id;
 		this.name = name;
 		this.sex = sex;
@@ -188,4 +188,9 @@ public class Hero {
 		return true;
 	}
 
+	public String getPictureString() {
+		byte[] encodedImage = Base64.getEncoder().encode(picture);
+		String pict = "data:image/jpeg;base64," + new String(encodedImage);
+		return pict;
+	}
 }
