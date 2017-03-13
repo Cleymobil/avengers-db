@@ -14,8 +14,7 @@ public class HeroDao extends MarvelDao {
 
 	public Set<Hero> findAll() throws SQLException {
 
-		String query = "SELECT h.id AS hero_id, h.name AS name,h.sex sex, h.picture heroPicture, h.abilities heroHabilities, irl.name AS realName "
-				+ "FROM heroes h " + "LEFT JOIN `irl` irl ON h.id = irl.hero_id " + "ORDER BY h.name ASC";
+		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id " + "ORDER BY h.name ASC";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
