@@ -17,7 +17,14 @@ public class TestApplicationTeam {
 		 Team t= service.findTeamById(2);
 	
 		 System.out.println(t.getName());
+		 
+		 
+		 Set<Team> teams= service.findTeamsByName("men");
+		 System.out.println(teams);
 		
+		 Team te= service.findTeamByName("Avengers");
+		 System.out.println(te);
+		 
 	}
 
 }

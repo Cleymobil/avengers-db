@@ -59,6 +59,58 @@ public class TeamDao extends MarvelDao {
 		return team;
 
 	}
+	
+	public Team findTeamByName(String name) throws SQLException {
+
+		String query = "SELECT * FROM team  WHERE `name`=?";
+
+		// port 3306, no password
+		Connection connect = connectToMySql();
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, name);
+
+		ResultSet resultSet = statement.executeQuery();
+
+		Team team = new Team();
+		while (resultSet.next()) {
+
+			team = resultSetToTeam(resultSet);
+
+		}
+
+		connect.close();
+		return team;
+
+	}
+	
+	
+	public Set<Team> findTeamsByName(String name) throws SQLException {
+
+		String query = "SELECT * FROM team  WHERE `name`like ?";
+
+		// port 3306, no password
+		Connection connect = connectToMySql();
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, '%'+name+'%');
+
+		ResultSet resultSet = statement.executeQuery();
+
+		Set<Team> teams = new HashSet<>();
+		while (resultSet.next()) {
+
+			teams.add(resultSetToTeam(resultSet));
+
+		}
+
+		connect.close();
+		return teams;
+
+	}
+	
+	
+	
+	
+	
 
 	public Set<Hero> findTeamHeroes(int id) throws SQLException {
 
