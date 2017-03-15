@@ -14,10 +14,10 @@ public class TestApplicationTeam {
 		 //System.out.println(service.findAll());
 
 		// recherche tous les films pareil au nom
-		 Set<Team> team = service.findTeamById(2);
-		 for (Team t : team){
+		 Team t= service.findTeamById(2);
+	
 		 System.out.println(t.getName());
-		}
+		
 	}
 
 }

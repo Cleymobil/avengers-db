@@ -16,7 +16,9 @@ public class Team {
 		
 	}
 	
-	
+	public Team(){
+		picture=null;
+	}
 	
 	public int getId() {
 		return id;
@@ -43,7 +45,9 @@ public class Team {
 		this.history = history;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return name;
+	}
 	
 }
