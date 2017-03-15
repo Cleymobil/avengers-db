@@ -49,10 +49,11 @@ public class HeroService {
 		}
 	}
 
-	public void createHero(String name,String realname, long likes, long dislikes, String abilities, String history) {
+	public void createHero(Hero hero) {
 
 		try {
-			new HeroDao().createHero(name, realname, likes, dislikes, abilities, history);
+			int heroId =new HeroDao().createHero(hero);
+			new HeroDao().putHeroInTeam(hero.getTeam_id(), heroId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw stateException;
