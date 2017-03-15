@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class HeroDao extends MarvelDao {
 	public Set<Hero> findHeroesByName(String term) throws SQLException {
 
 		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id "
-		+ "WHERE h.name LIKE '%" + term + "%' ORDER BY h.name";
+				+ "WHERE h.name LIKE '%" + term + "%' ORDER BY h.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
@@ -59,7 +60,7 @@ public class HeroDao extends MarvelDao {
 		return heroes;
 	}
 
-		public Hero findHeroesById(int id) throws SQLException {
+	public Hero findHeroesById(int id) throws SQLException {
 
 		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id "
 				+ "WHERE h.id LIKE " + id + " ORDER BY h.name";
@@ -80,6 +81,31 @@ public class HeroDao extends MarvelDao {
 
 		connect.close();
 		return heroe;
+	}
+
+	public void createHero(String name, long likes, long dislikes, String abilities, String history)
+			throws SQLException {
+
+		String query = "INSERT INTO heroes (name, sex, likes, dislikes, picture, abilities, history) VALUES (?,'O',?,?,null,?,?);";
+
+		Connection connect = connectToMySql();
+		PreparedStatement statement = connect.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+		statement.setString(1, name);
+		statement.setLong(2, likes);
+		statement.setLong(3, dislikes);
+		statement.setString(4, abilities);
+		statement.setString(5, history);
+		statement.execute();
+
+		ResultSet rs = statement.getGeneratedKeys();
+		int id = -1;
+		if (rs.next()) {
+			id = rs.getInt(1);
+		}
+		System.out.println("id " + id);
+
+		connect.close();
+
 	}
 
 	Hero resultSetToHero(ResultSet resultSet) {
