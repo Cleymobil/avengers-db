@@ -57,6 +57,15 @@ public class TeamService {
 		}
 
 	}
+
+	public void deleteTeam(int id) {
+		try {
+			new TeamDao().deleteTeam(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}		
+	}
 	
 	
 	
