@@ -45,8 +45,7 @@ public class TeamDao extends MarvelDao {
 		Connection connect = connectToMySql();
 		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		statement.setInt(1, id);
-		
-		
+
 		ResultSet resultSet = statement.executeQuery();
 
 		Team team = new Team();
@@ -60,7 +59,7 @@ public class TeamDao extends MarvelDao {
 		return team;
 
 	}
-	
+
 	public Set<Hero> findTeamHeroes(int id) throws SQLException {
 
 		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id LEFT JOIN team_hero th ON h.id=th.hero_id  LEFT JOIN team t ON t.id=th.team_id WHERE th.team_id =?";
@@ -70,8 +69,7 @@ public class TeamDao extends MarvelDao {
 		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		statement.setInt(1, id);
 		ResultSet resultSet = statement.executeQuery();
-		
-		
+
 		Set<Hero> heroes = new HashSet<>();
 
 		while (resultSet.next()) {
@@ -84,10 +82,6 @@ public class TeamDao extends MarvelDao {
 		return heroes;
 
 	}
-	
-	
-	
-	
 
 	private Team resultSetToTeam(ResultSet resultSet) {
 
@@ -125,6 +119,33 @@ public class TeamDao extends MarvelDao {
 			id = rs.getInt(1);
 		}
 		System.out.println("id " + id);
+		connect.close();
+
+	}
+
+	
+
+	public void deleteTeam(int id) throws SQLException {
+
+		
+		String query = "DELETE FROM `team_hero` WHERE team_id=?";
+
+		// port 3306, no password
+		Connection connect = connectToMySql();
+
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setInt(1, id);
+		statement.execute();
+
+		
+		
+		
+		String query2 = "DELETE FROM `team` WHERE id=?";
+		
+		PreparedStatement statement2 = connect.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+		statement2.setInt(1, id);
+		statement2.execute();
+		
 		connect.close();
 
 	}
