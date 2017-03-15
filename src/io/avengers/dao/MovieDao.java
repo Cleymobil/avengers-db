@@ -142,5 +142,23 @@ public class MovieDao extends MarvelDao {
 		connect.close();
 
 	}
+	
+	public void deleteMovie(int movieId) throws SQLException{
+		
+		Connection connect = connectToMySql();
+
+		String query = "DELETE FROM `movie_hero` WHERE `id_movie`=?";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, movieId);
+		statement.execute();
+		
+		String query2 = "DELETE FROM `movie` WHERE `id`=?";
+		PreparedStatement statement2 = connect.prepareStatement(query2);
+		statement2.setInt(1, movieId);
+		statement2.execute();
+		
+		
+		connect.close();
+	}
 
 }

@@ -57,6 +57,15 @@ public class MovieService {
 			throw stateException;
 		}
 	}
+	public void deleteMovie(int movieId){
+		MovieDao movieDao = new MovieDao();
+		try {
+			movieDao.deleteMovie(movieId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
 
 	public void putHeroInMovie(int heroId, int movieId ){
 		MovieDao movieDao = new MovieDao();
