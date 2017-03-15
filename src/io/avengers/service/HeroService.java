@@ -52,8 +52,10 @@ public class HeroService {
 	public void createHero(Hero hero) {
 
 		try {
-			int heroId =new HeroDao().createHero(hero);
-			new HeroDao().putHeroInTeam(hero.getTeam_id(), heroId);
+			int heroId = new HeroDao().createHero(hero);
+			if (hero.getTeamId() != 0) {
+				new HeroDao().putHeroInTeam(hero.getTeamId(), heroId);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw stateException;

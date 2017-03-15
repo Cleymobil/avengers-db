@@ -15,14 +15,14 @@ public class Hero {
 	String history;
 	String team;
 	String irl;
-	int team_id;
+	int teamId;
 
-	public int getTeam_id() {
-		return team_id;
+	public int getTeamId() {
+		return teamId;
 	}
 
-	public void setTeam_id(int team_id) {
-		this.team_id = team_id;
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 
 	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
@@ -44,8 +44,8 @@ public class Hero {
 		this.team = team;
 	}
 	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
-			String abilities, String history, int team_id){
-		this.team_id = team_id;
+			String abilities, String history, int teamId){
+		this.teamId = teamId;
 	}
 
 	public Hero(int id, String name, Sex o, Long likes, Long dislikes, byte[] picture, String abilities, String history) {

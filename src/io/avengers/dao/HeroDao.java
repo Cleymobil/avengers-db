@@ -85,15 +85,16 @@ public class HeroDao extends MarvelDao {
 
 	public int createHero(Hero hero) throws SQLException {
 
-		String query = "INSERT INTO heroes (name, sex, likes, dislikes, picture, abilities, history) VALUES (?,'O',?,?,null,?,?);";
+		String query = "INSERT INTO heroes (name, sex, likes, dislikes, picture, abilities, history) VALUES (?,?,?,?,null,?,?);";
 
 		Connection connect = connectToMySql();
 		PreparedStatement statement = connect.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		statement.setString(1, hero.getName());
-		statement.setLong(2, hero.getLikes());
-		statement.setLong(3, hero.getDislikes());
-		statement.setString(4, hero.getAbilities());
-		statement.setString(5, hero.getHistory());
+		statement.setString(2, hero.getSex().toString());
+		statement.setLong(3, hero.getLikes());
+		statement.setLong(4, hero.getDislikes());
+		statement.setString(5, hero.getAbilities());
+		statement.setString(6, hero.getHistory());
 		statement.execute();
 
 		ResultSet rs = statement.getGeneratedKeys();
