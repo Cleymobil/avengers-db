@@ -73,4 +73,14 @@ public class HeroService {
 			throw stateException;
 		}
 	}
+	public void removeTeamFromHero(Hero hero) {
+
+		try {
+			new HeroDao().removeTeamFromHero(hero);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
+	
 }

@@ -137,6 +137,14 @@ public class HeroDao extends MarvelDao {
 
 		connect.close();
 	}
+	public void removeTeamFromHero(Hero hero) throws SQLException {
+		Connection connect = connectToMySql();
+		String query = "DELETE FROM `team_hero` WHERE `hero_id` LIKE " + hero.getId() + ";";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.execute();
+		connect.close();
+	}
+	
 
 	Hero resultSetToHero(ResultSet resultSet) {
 
