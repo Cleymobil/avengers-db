@@ -11,12 +11,12 @@ import java.util.Set;
 public class MoviesHeroesDao extends MarvelDao {
 
 	public Set<String> findHeroesbyMovies(String name) throws SQLException {
-		String query = "SELECT h.name FROM movie_hero mh JOIN heroes h ON h.id=mh.id_hero JOIN movie m ON mh.id_movie=m.id WHERE m.name LIKE '%?%' ORDER BY h.name;";
+		String query = "SELECT h.name FROM movie_hero mh JOIN heroes h ON h.id=mh.id_hero JOIN movie m ON mh.id_movie=m.id WHERE m.name LIKE '?' ORDER BY h.name;";
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
 		PreparedStatement statement = connect.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-		statement.setString(1, name);
+		statement.setString(1, "%" + name + "%");
 		ResultSet resultSet = statement.getGeneratedKeys();
 
 		Set<String> heroesMovies = new HashSet<>();
