@@ -9,7 +9,7 @@ import io.avengers.domain.Movie;
 import io.avengers.domain.Team;
 
 public class TeamService {
-	
+
 	IllegalStateException stateException = new IllegalStateException(
 			"There is an error in the database please try again later");
 
@@ -22,9 +22,8 @@ public class TeamService {
 			throw stateException;
 		}
 	}
-	
-	public Set<Team> findTeamById(int id) {
-		
+
+	public Team findTeamById(int id) {
 
 		try {
 			return new TeamDao().findTeamById(id);
@@ -32,6 +31,17 @@ public class TeamService {
 			e.printStackTrace();
 			throw stateException;
 		}
+	}
+
+	public void createTeam(String name, String history) {
+
+		try {
+			new TeamDao().createTeam(name, history);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+
 	}
 
 }

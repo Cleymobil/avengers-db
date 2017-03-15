@@ -32,11 +32,11 @@ public class Hero {
 
 	public Hero(int id2, String name2, Sex o, Long likes2, Long dislikes2, byte[] picture2, String abilities2,
 			String history2) {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Hero() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
