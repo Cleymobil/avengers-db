@@ -83,36 +83,46 @@ public class HeroDao extends MarvelDao {
 		return heroe;
 	}
 
-	public void createHero(String name, String realname,  long likes, long dislikes, String abilities, String history)
-			throws SQLException {
+	public int createHero(Hero hero) throws SQLException {
 
-		String query = "INSERT INTO heroes (name, sex, likes, dislikes, picture, abilities, history) VALUES (?,'O',?,?,null,?,?);";
+		String query = "INSERT INTO heroes (name, sex, likes, dislikes, picture, abilities, history) VALUES (?,?,?,?,null,?,?);";
 
 		Connection connect = connectToMySql();
 		PreparedStatement statement = connect.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-		statement.setString(1, name);
-		statement.setLong(2, likes);
-		statement.setLong(3, dislikes);
-		statement.setString(4, abilities);
-		statement.setString(5, history);
+		statement.setString(1, hero.getName());
+		statement.setString(2, hero.getSex().toString());
+		statement.setLong(3, hero.getLikes());
+		statement.setLong(4, hero.getDislikes());
+		statement.setString(5, hero.getAbilities());
+		statement.setString(6, hero.getHistory());
 		statement.execute();
 
 		ResultSet rs = statement.getGeneratedKeys();
-		int id = -1;
+		int heroId = -1;
 		if (rs.next()) {
-			id = rs.getInt(1);
+			heroId = rs.getInt(1);
 		}
-		System.out.println("id " + id);
+		System.out.println("id " + heroId);
 
 		String query2 = "INSERT INTO irl (hero_id, name) VALUES (?,?);";
 		PreparedStatement statement2 = connect.prepareStatement(query2);
-		statement2.setInt(1, id);
-		statement2.setString(2, realname);
+		statement2.setInt(1, heroId);
+		statement2.setString(2, hero.getIrl());
 		statement2.execute();
-		
 		connect.close();
-		
-		
+		return heroId;
+	}
+
+	public void putHeroInTeam(int teamId, int heroId) throws SQLException {
+		Connection connect = connectToMySql();
+		String query = "INSERT INTO team_hero (team_id, hero_id) VALUES (?,?);";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, teamId);
+		statement.setInt(2, heroId);
+		statement.execute();
+
+		connect.close();
+
 	}
 
 	Hero resultSetToHero(ResultSet resultSet) {

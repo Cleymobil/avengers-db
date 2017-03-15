@@ -15,6 +15,15 @@ public class Hero {
 	String history;
 	String team;
 	String irl;
+	int teamId;
+
+	public int getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
+	}
 
 	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
 			String abilities, String history) {
@@ -30,13 +39,21 @@ public class Hero {
 		this.irl = null;
 	}
 
-	public Hero(int id2, String name2, Sex o, Long likes2, Long dislikes2, byte[] picture2, String abilities2,
-			String history2) {
-		
+	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
+			String abilities, String history, String team) {
+		this.team = team;
+	}
+	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
+			String abilities, String history, int teamId){
+		this.teamId = teamId;
+	}
+
+	public Hero(int id, String name, Sex o, Long likes, Long dislikes, byte[] picture, String abilities, String history) {
+
 	}
 
 	public Hero() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -195,7 +212,6 @@ public class Hero {
 	}
 
 	public void add(Hero resultSetToHero) {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

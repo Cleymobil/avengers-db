@@ -39,6 +39,7 @@ public class HeroDataDao extends MarvelDao{
 				String history = resultSet.getString("history");
 				String team = resultSet.getString("team");
 				String irl = resultSet.getString("irl");
+				
 
 				Hero h1 = new Hero(id, name, Sex.O, likes, dislikes, picture, abilities, history);
 				h1.setIrl(irl);
