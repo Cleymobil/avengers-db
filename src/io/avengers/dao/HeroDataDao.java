@@ -1,7 +1,7 @@
 package io.avengers.dao;
 
 import java.sql.Connection;
-
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,14 +14,15 @@ public class HeroDataDao extends MarvelDao{
 
 	public Hero findHeroData(String term) throws SQLException {
 
-		String query = "SELECT h.id, h.name, h.sex, h.likes, h.dislikes, h.picture, h.abilities, h.history, irl.name as irl, t.name as team FROM heroes h INNER JOIN irl ON h.id=irl.hero_id LEFT JOIN team_hero th ON h.id=th.hero_id  LEFT JOIN team t ON t.id=th.team_id WHERE h.name like '%"
-				+ term + "%'";
+		String query = "SELECT h.id, h.name, h.sex, h.likes, h.dislikes, h.picture, h.abilities, h.history, irl.name as irl, t.name as team FROM heroes h INNER JOIN irl ON h.id=irl.hero_id LEFT JOIN team_hero th ON h.id=th.hero_id  LEFT JOIN team t ON t.id=th.team_id WHERE h.name LIKE ?";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
-		Statement statement = connect.createStatement();
-		ResultSet resultSet = statement.executeQuery(query);
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setString(1,'%'+term+'%');
+	
+		ResultSet resultSet = statement.executeQuery();
 
 		Hero h = new Hero();
 		while (resultSet.next()) {
@@ -49,6 +50,11 @@ public class HeroDataDao extends MarvelDao{
 				throw new IllegalStateException("Database has been compromised: " + e.getMessage());
 			}
 		}
+		
+		
+		
+		
+		
 		connect.close();
 		return h;
 

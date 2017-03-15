@@ -1,6 +1,8 @@
 package io.avengers.service;
 
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 
 import io.avengers.dao.HeroDao;
@@ -62,4 +64,13 @@ public class HeroService {
 		}
 	}
 
+	public void deleteHero(Hero hero) {
+
+		try {
+			new HeroDao().deleteHero(hero);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
 }

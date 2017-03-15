@@ -5,6 +5,7 @@ import java.util.Set;
 
 import io.avengers.dao.MovieDao;
 import io.avengers.dao.TeamDao;
+import io.avengers.domain.Hero;
 import io.avengers.domain.Movie;
 import io.avengers.domain.Team;
 
@@ -32,6 +33,19 @@ public class TeamService {
 			throw stateException;
 		}
 	}
+	
+	
+	public Set<Hero> findTeamHeroes(int id) {
+
+		try {
+			return new TeamDao().findTeamHeroes(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
+	
+	
 
 	public void createTeam(String name, String history) {
 
@@ -43,5 +57,8 @@ public class TeamService {
 		}
 
 	}
+	
+	
+	
 
 }
