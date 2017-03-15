@@ -37,5 +37,16 @@ public class MovieService {
 			throw stateException;
 		}
 	}
+	
+	public Movie createMovie(Movie movie){
+		MovieDao mvd = new MovieDao();
+	
+		try {
+			return mvd.createMovie(movie);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
 
 }

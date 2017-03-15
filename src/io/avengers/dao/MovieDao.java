@@ -1,6 +1,7 @@
 package io.avengers.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,9 +10,7 @@ import java.util.Set;
 
 import io.avengers.domain.Movie;
 
-public class MovieDao extends MarvelDao{
-
-
+public class MovieDao extends MarvelDao {
 
 	public Set<Movie> findAll() throws SQLException {
 
@@ -38,13 +37,15 @@ public class MovieDao extends MarvelDao{
 
 	public Set<Movie> findMoviesByName(String term) throws SQLException {
 
-		String query = "SELECT * FROM movie m WHERE name LIKE '%" + term + "%' ORDER BY m.name";
+		String query = "SELECT * FROM movie m WHERE name LIKE '%?%' ORDER BY m.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
-		Statement statement = connect.createStatement();
-		ResultSet resultSet = statement.executeQuery(query);
+		PreparedStatement statement = connect.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, term);
+		
+		ResultSet resultSet = statement.getGeneratedKeys();
 
 		Set<Movie> movies = new HashSet<>();
 
@@ -56,13 +57,14 @@ public class MovieDao extends MarvelDao{
 
 		connect.close();
 		return movies;
-		
+
 	}
 
-	public Set<Movie> findMovieData(String name) throws SQLException{
-		Set<Movie> movieData=findMoviesByName(name);
+	public Set<Movie> findMovieData(String name) throws SQLException {
+		Set<Movie> movieData = findMoviesByName(name);
 		return movieData;
 	}
+
 	Movie resultSetToMovie(ResultSet resultSet) {
 
 		try {
@@ -81,10 +83,27 @@ public class MovieDao extends MarvelDao{
 		} catch (Exception e) {
 			throw new IllegalStateException("Database has been compromised: " + e.getMessage());
 		}
-		
+
 	}
-	
-	
-	
-	
+
+	public Movie createMovie(Movie newMovie) throws SQLException {
+		
+		String query = "INSERT INTO `movie`( `name`, `gross`, `budget`) VALUES (?,?,?)";
+		Connection connect = connectToMySql();
+
+		PreparedStatement statement = connect.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, newMovie.getName());
+		statement.setLong(2, newMovie.getGross());
+		statement.setLong(3, newMovie.getBudget());
+		statement.execute();
+
+		ResultSet keys =statement.getGeneratedKeys();
+		keys.next();
+		int id = keys.getInt(1);
+		newMovie.setId(id);
+		connect.close();
+		return newMovie;
+
+	}
+
 }
