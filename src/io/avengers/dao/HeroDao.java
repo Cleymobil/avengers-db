@@ -76,9 +76,7 @@ public class HeroDao extends MarvelDao {
 		while (resultSet.next()) {
 
 			heroe = resultSetToHero(resultSet);
-
 		}
-
 		connect.close();
 		return heroe;
 	}
@@ -123,6 +121,21 @@ public class HeroDao extends MarvelDao {
 
 		connect.close();
 
+	}
+
+	public void deleteHero(Hero hero) throws SQLException {
+		Connection connect = connectToMySql();
+		String query = "DELETE FROM `team_hero` WHERE `hero_id` LIKE " + hero.getId() + ";";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.execute();
+		String query2 = "DELETE FROM `irl` WHERE `hero_id` LIKE " + hero.getId() + ";";
+		PreparedStatement statement2 = connect.prepareStatement(query2);
+		statement2.execute();
+		String query3 = "DELETE FROM `heroes` WHERE id LIKE " + hero.getId() + ";";
+		PreparedStatement statement3 = connect.prepareStatement(query3);
+		statement3.execute();
+
+		connect.close();
 	}
 
 	Hero resultSetToHero(ResultSet resultSet) {
