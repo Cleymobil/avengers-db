@@ -34,6 +34,29 @@ public class TeamService {
 		}
 	}
 	
+	public Team findTeamByName(String name) {
+
+		try {
+			return new TeamDao().findTeamByName(name);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
+	
+	
+	public Set<Team> findTeamsByName(String name) {
+
+		try {
+			return new TeamDao().findTeamsByName(name);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
+	
+	
+	
 	
 	public Set<Hero> findTeamHeroes(int id) {
 
