@@ -37,16 +37,36 @@ public class MovieService {
 			throw stateException;
 		}
 	}
+	public Movie findMovieById(int Id) {
+				
+		try {
+			return new MovieDao().findMovieById(Id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
 	
 	public Movie createMovie(Movie movie){
-		MovieDao mvd = new MovieDao();
+		MovieDao movieDao = new MovieDao();
 	
 		try {
-			return mvd.createMovie(movie);
+			return movieDao.createMovie(movie);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw stateException;
 		}
 	}
 
+	public void putHeroInMovie(int heroId, int movieId ){
+		MovieDao movieDao = new MovieDao();
+		try {
+			movieDao.putHeroInMovie(heroId, movieId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
+	
+	
 }

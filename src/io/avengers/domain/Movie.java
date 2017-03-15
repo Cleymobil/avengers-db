@@ -24,6 +24,7 @@ public class Movie {
 
 	public Movie() {
 	}
+	
 	public Movie(String name, long gross, long budget) {
 		this.name = name;
 		this.gross = gross;

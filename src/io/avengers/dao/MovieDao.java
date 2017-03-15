@@ -37,14 +37,14 @@ public class MovieDao extends MarvelDao {
 
 	public Set<Movie> findMoviesByName(String term) throws SQLException {
 
-		String query = "SELECT * FROM movie m WHERE name LIKE '%?%' ORDER BY m.name";
+		String query = "SELECT * FROM movie m WHERE name LIKE '?' ORDER BY m.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
-		PreparedStatement statement = connect.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-		statement.setString(1, term);
-		
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, "%" + term + "%");
+
 		ResultSet resultSet = statement.getGeneratedKeys();
 
 		Set<Movie> movies = new HashSet<>();
@@ -57,6 +57,30 @@ public class MovieDao extends MarvelDao {
 
 		connect.close();
 		return movies;
+
+	}
+
+	public Movie findMovieById(int id) throws SQLException {
+
+		String query = "SELECT * FROM movie m WHERE id =?";
+
+		// port 3306, no password
+		Connection connect = connectToMySql();
+
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, id);
+
+		ResultSet resultSet = statement.executeQuery();
+		Movie movie = null;
+		
+		while (resultSet.next()){
+			movie = resultSetToMovie(resultSet);
+		}
+		
+		
+		connect.close();
+
+		return movie;
 
 	}
 
@@ -87,22 +111,35 @@ public class MovieDao extends MarvelDao {
 	}
 
 	public Movie createMovie(Movie newMovie) throws SQLException {
-		
+
 		String query = "INSERT INTO `movie`( `name`, `gross`, `budget`) VALUES (?,?,?)";
 		Connection connect = connectToMySql();
 
-		PreparedStatement statement = connect.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		statement.setString(1, newMovie.getName());
 		statement.setLong(2, newMovie.getGross());
 		statement.setLong(3, newMovie.getBudget());
 		statement.execute();
 
-		ResultSet keys =statement.getGeneratedKeys();
+		ResultSet keys = statement.getGeneratedKeys();
 		keys.next();
 		int id = keys.getInt(1);
 		newMovie.setId(id);
 		connect.close();
 		return newMovie;
+
+	}
+
+	public void putHeroInMovie(int heroId, int movieId) throws SQLException {
+		String query = "INSERT INTO `movie_hero`(`id_movie`, `id_hero`) VALUES (?,?)";
+		Connection connect = connectToMySql();
+
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, movieId);
+		statement.setInt(2, heroId);
+		statement.execute();
+
+		connect.close();
 
 	}
 
