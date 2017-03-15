@@ -40,13 +40,14 @@ public class HeroDao extends MarvelDao {
 	public Set<Hero> findHeroesByName(String term) throws SQLException {
 
 		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id "
-				+ "WHERE h.name LIKE '%" + term + "%' ORDER BY h.name";
+				+ "WHERE h.name=? ORDER BY h.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
-		Statement statement = connect.createStatement();
-		ResultSet resultSet = statement.executeQuery(query);
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setString(1, '%'+term+'%');
+		ResultSet resultSet = statement.executeQuery();
 
 		Set<Hero> heroes = new HashSet<>();
 
@@ -63,13 +64,13 @@ public class HeroDao extends MarvelDao {
 	public Hero findHeroesById(int id) throws SQLException {
 
 		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id "
-				+ "WHERE h.id LIKE " + id + " ORDER BY h.name";
+				+ "WHERE h.id =?  ORDER BY h.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
-
-		Statement statement = connect.createStatement();
-		ResultSet resultSet = statement.executeQuery(query);
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, id);
+		ResultSet resultSet = statement.executeQuery();
 
 		Hero heroe = null;
 
@@ -125,14 +126,20 @@ public class HeroDao extends MarvelDao {
 
 	public void deleteHero(Hero hero) throws SQLException {
 		Connection connect = connectToMySql();
-		String query = "DELETE FROM `team_hero` WHERE `hero_id` LIKE " + hero.getId() + ";";
+		
+		String query = "DELETE FROM `team_hero` WHERE `hero_id`=?;";
 		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, hero.getId());
 		statement.execute();
-		String query2 = "DELETE FROM `irl` WHERE `hero_id` LIKE " + hero.getId() + ";";
+		
+		String query2 = "DELETE FROM `irl` WHERE `hero_id`=?;";
 		PreparedStatement statement2 = connect.prepareStatement(query2);
+		statement2.setInt(1, hero.getId());
 		statement2.execute();
-		String query3 = "DELETE FROM `heroes` WHERE id LIKE " + hero.getId() + ";";
+		
+		String query3 = "DELETE FROM `heroes` WHERE `id`=?;";
 		PreparedStatement statement3 = connect.prepareStatement(query3);
+		statement3.setInt(1, hero.getId());
 		statement3.execute();
 
 		connect.close();
