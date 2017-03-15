@@ -77,5 +77,14 @@ public class MovieService {
 		}
 	}
 	
+	public void deleteHeroInMovie(int movieId, int heroId){
+		MovieDao movieDao = new MovieDao();
+		try {
+			movieDao.deleteHeroInMovie(movieId, heroId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
 	
 }
