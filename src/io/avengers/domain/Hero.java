@@ -17,14 +17,6 @@ public class Hero {
 	String irl;
 	int teamId;
 
-	public int getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
-
 	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
 			String abilities, String history) {
 		this.id = id;
@@ -43,22 +35,32 @@ public class Hero {
 			String abilities, String history, String team) {
 		this.team = team;
 	}
+
 	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
-			String abilities, String history, int teamId){
+			String abilities, String history, int teamId) {
 		this.teamId = teamId;
 	}
 
-	public Hero(int id, String name, Sex o, Long likes, Long dislikes, byte[] picture, String abilities, String history) {
+	public Hero(int id, String name, Sex o, Long likes, Long dislikes, byte[] picture, String abilities,
+			String history) {
 
 	}
 
 	public Hero() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public String toString() {
 		return this.name;
+	}
+
+	public int getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 
 	public int getId() {
