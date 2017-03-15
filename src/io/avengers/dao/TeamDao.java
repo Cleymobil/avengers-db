@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.avengers.domain.Hero;
 import io.avengers.domain.Movie;
 import io.avengers.domain.Team;
 
@@ -38,13 +39,15 @@ public class TeamDao extends MarvelDao {
 
 	public Team findTeamById(int id) throws SQLException {
 
-		String query = "SELECT * FROM team  WHERE id=" + id + "";
+		String query = "SELECT * FROM team  WHERE id=?";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
-
-		Statement statement = connect.createStatement();
-		ResultSet resultSet = statement.executeQuery(query);
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setInt(1, id);
+		
+		
+		ResultSet resultSet = statement.executeQuery();
 
 		Team team = new Team();
 		while (resultSet.next()) {
@@ -57,6 +60,34 @@ public class TeamDao extends MarvelDao {
 		return team;
 
 	}
+	
+	public Set<Hero> findTeamHeroes(int id) throws SQLException {
+
+		String query = "SELECT h.id, h.name AS name,h.sex sex, h.picture ,h.likes, h.dislikes, h.abilities, h.history, irl.name AS realName FROM heroes h LEFT JOIN `irl` irl ON h.id = irl.hero_id LEFT JOIN team_hero th ON h.id=th.hero_id  LEFT JOIN team t ON t.id=th.team_id WHERE th.team_id =?";
+
+		// port 3306, no password
+		Connection connect = connectToMySql();
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setInt(1, id);
+		ResultSet resultSet = statement.executeQuery();
+		
+		
+		Set<Hero> heroes = new HashSet<>();
+
+		while (resultSet.next()) {
+
+			heroes.add(new HeroDao().resultSetToHero(resultSet));
+
+		}
+
+		connect.close();
+		return heroes;
+
+	}
+	
+	
+	
+	
 
 	private Team resultSetToTeam(ResultSet resultSet) {
 
