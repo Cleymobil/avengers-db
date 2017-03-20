@@ -11,16 +11,15 @@ import io.avengers.domain.Sex;
 
 public class HeroService {
 
-	IllegalStateException stateException = new IllegalStateException(
-			"There is an error in the database please try again later");
-
+	// IllegalStateException stateException =
 	public Set<Hero> findAll() {
 
 		try {
 			return new HeroDao().findAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw stateException;
+			throw new IllegalStateException("There is an error in the database please try again later");
+
 		}
 	}
 
@@ -37,7 +36,8 @@ public class HeroService {
 			return new HeroDao().findHeroesByName(term);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw stateException;
+			throw new IllegalStateException("There is an error in the database please try again later");
+
 		}
 	}
 
@@ -47,7 +47,8 @@ public class HeroService {
 			return new HeroDao().findHeroesById(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw stateException;
+			throw new IllegalStateException("There is an error in the database please try again later");
+
 		}
 	}
 
@@ -55,12 +56,16 @@ public class HeroService {
 
 		try {
 			int heroId = new HeroDao().createHero(hero);
+			if (hero.getIrl()!=null) {
+				new HeroDao().CreateHeroIrl(hero);
+			}
 			if (hero.getTeamId() != 0) {
 				new HeroDao().putHeroInTeam(hero.getTeamId(), heroId);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw stateException;
+			throw new IllegalStateException("There is an error in the database please try again later");
+
 		}
 	}
 
@@ -70,17 +75,19 @@ public class HeroService {
 			new HeroDao().deleteHero(hero);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw stateException;
+			throw new IllegalStateException("There is an error in the database please try again later");
+
 		}
 	}
+
 	public void removeTeamFromHero(Hero hero) {
 
 		try {
 			new HeroDao().removeTeamFromHero(hero);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw stateException;
+			throw new IllegalStateException("There is an error in the database please try again later");
 		}
 	}
-	
+
 }

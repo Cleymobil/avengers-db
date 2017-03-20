@@ -9,7 +9,7 @@ public class Hero {
 
 	int id;
 	String name;
-	Sex sex;
+	Sex sex=Sex.O;
 	long likes;
 	long dislikes;
 	byte[] picture;
@@ -210,7 +210,11 @@ public class Hero {
 		return true;
 	}
 
+	@XmlTransient
 	public String getPictureString() {
+		if (picture== null){
+			return "";
+		}
 		byte[] encodedImage = Base64.getEncoder().encode(picture);
 		String pict = "data:image/jpeg;base64," + new String(encodedImage);
 		return pict;

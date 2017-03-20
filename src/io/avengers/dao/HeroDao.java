@@ -46,7 +46,7 @@ public class HeroDao extends MarvelDao {
 		Connection connect = connectToMySql();
 
 		PreparedStatement statement = connect.prepareStatement(query);
-		statement.setString(1, '%'+term+'%');
+		statement.setString(1, '%' + term + '%');
 		ResultSet resultSet = statement.executeQuery();
 
 		Set<Hero> heroes = new HashSet<>();
@@ -102,14 +102,19 @@ public class HeroDao extends MarvelDao {
 			heroId = rs.getInt(1);
 		}
 		System.out.println("id " + heroId);
+		connect.close();
+		return heroId;
+	}
 
+	public void CreateHeroIrl(Hero hero) throws SQLException {
+		Connection connect = connectToMySql();
 		String query2 = "INSERT INTO irl (hero_id, name) VALUES (?,?);";
 		PreparedStatement statement2 = connect.prepareStatement(query2);
-		statement2.setInt(1, heroId);
+		statement2.setInt(1, hero.getId());
 		statement2.setString(2, hero.getIrl());
 		statement2.execute();
 		connect.close();
-		return heroId;
+
 	}
 
 	public void putHeroInTeam(int teamId, int heroId) throws SQLException {
@@ -126,17 +131,17 @@ public class HeroDao extends MarvelDao {
 
 	public void deleteHero(Hero hero) throws SQLException {
 		Connection connect = connectToMySql();
-		
+
 		String query = "DELETE FROM `team_hero` WHERE `hero_id`=?;";
 		PreparedStatement statement = connect.prepareStatement(query);
 		statement.setInt(1, hero.getId());
 		statement.execute();
-		
+
 		String query2 = "DELETE FROM `irl` WHERE `hero_id`=?;";
 		PreparedStatement statement2 = connect.prepareStatement(query2);
 		statement2.setInt(1, hero.getId());
 		statement2.execute();
-		
+
 		String query3 = "DELETE FROM `heroes` WHERE `id`=?;";
 		PreparedStatement statement3 = connect.prepareStatement(query3);
 		statement3.setInt(1, hero.getId());
@@ -144,6 +149,7 @@ public class HeroDao extends MarvelDao {
 
 		connect.close();
 	}
+
 	public void removeTeamFromHero(Hero hero) throws SQLException {
 		Connection connect = connectToMySql();
 		String query = "DELETE FROM `team_hero` WHERE `hero_id` LIKE " + hero.getId() + ";";
@@ -151,7 +157,6 @@ public class HeroDao extends MarvelDao {
 		statement.execute();
 		connect.close();
 	}
-	
 
 	Hero resultSetToHero(ResultSet resultSet) {
 
