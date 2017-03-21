@@ -51,7 +51,7 @@ public class HeroService {
 
 		}
 	}
-
+	
 	public Hero createHero(Hero hero) {
 
 		try {
