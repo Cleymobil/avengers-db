@@ -24,6 +24,14 @@ public class Movie {
 		this.history = history;
 
 	}
+	public Movie(String name, long gross, long budget, String history) {
+
+		this.name = name;
+		this.gross = gross;
+		this.budget = budget;
+		this.history = history;
+
+	}
 
 	public Movie() {
 	}
