@@ -1,6 +1,9 @@
 package io.avengers.domain;
 
 import java.util.Arrays;
+import java.util.Base64;
+
+import javax.xml.bind.annotation.XmlTransient;
 
 public class Movie {
 
@@ -24,12 +27,13 @@ public class Movie {
 
 	public Movie() {
 	}
-	
+
 	public Movie(String name, long gross, long budget) {
 		this.name = name;
 		this.gross = gross;
 		this.budget = budget;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -46,6 +50,7 @@ public class Movie {
 		this.name = name;
 	}
 
+	@XmlTransient
 	public byte[] getPicture() {
 		return picture;
 	}
@@ -93,4 +98,13 @@ public class Movie {
 				+ "\n";
 	}
 
+	@XmlTransient
+	public String getPictureString() {
+		if (picture == null) {
+			return "";
+		}
+		byte[] encodedImage = Base64.getEncoder().encode(picture);
+		String pict = "data:image/jpeg;base64," + new String(encodedImage);
+		return pict;
+	}
 }
