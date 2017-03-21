@@ -52,16 +52,17 @@ public class HeroService {
 		}
 	}
 
-	public void createHero(Hero hero) {
+	public Hero createHero(Hero hero) {
 
 		try {
 			int heroId = new HeroDao().createHero(hero);
+			hero.setId(heroId);
 			if (hero.getIrl()!=null) {
 				new HeroDao().CreateHeroIrl(hero);
 			}
-			if (hero.getTeamId() != 0) {
+			if (hero.getTeamId() != 0) 
 				new HeroDao().putHeroInTeam(hero.getTeamId(), heroId);
-			}
+			return hero;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new IllegalStateException("There is an error in the database please try again later");
