@@ -129,6 +129,26 @@ public class MovieDao extends MarvelDao {
 		return newMovie;
 
 	}
+	public Movie createFullMovie(Movie newMovie) throws SQLException {
+
+		String query = "INSERT INTO `movie`( `name`, `gross`, `budget`,`history`) VALUES (?,?,?,?)";
+		Connection connect = connectToMySql();
+
+		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+		statement.setString(1, newMovie.getName());
+		statement.setLong(2, newMovie.getGross());
+		statement.setLong(3, newMovie.getBudget());
+		statement.setString(4, newMovie.getHistory());
+		statement.execute();
+
+		ResultSet keys = statement.getGeneratedKeys();
+		keys.next();
+		int id = keys.getInt(1);
+		newMovie.setId(id);
+		connect.close();
+		return newMovie;
+
+	}
 
 	public void putHeroInMovie(int heroId, int movieId) throws SQLException {
 		String query = "INSERT INTO `movie_hero`(`id_movie`, `id_hero`) VALUES (?,?)";

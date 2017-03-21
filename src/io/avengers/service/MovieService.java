@@ -57,6 +57,16 @@ public class MovieService {
 			throw stateException;
 		}
 	}
+	public Movie createFullMovie(Movie newMovie){
+		MovieDao movieDao = new MovieDao();
+		
+		try {
+			return movieDao.createFullMovie(newMovie);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw stateException;
+		}
+	}
 	public void deleteMovie(int movieId){
 		MovieDao movieDao = new MovieDao();
 		try {
