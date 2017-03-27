@@ -90,5 +90,14 @@ public class HeroService {
 			throw new IllegalStateException("There is an error in the database please try again later");
 		}
 	}
+ 
+	public Hero changeHeroName(int id, String newName){
+		try {
+			return new HeroDao().changeHeroName(id, newName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IllegalStateException("There is an error in the database please try again later");
 
+		}
+	}
 }
