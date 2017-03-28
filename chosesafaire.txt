@@ -1,9 +1,0 @@
-2/ formulaire
-
-d'inscription
-	pseudo
-	date de naissance
-	email
-	mot de passe
-	photo
-	femme ou homme
