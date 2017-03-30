@@ -12,7 +12,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import io.avengers.domain.Hero;
 import io.avengers.domain.Movie;
+import io.avengers.dao.MoviesHeroesDao;
 
 public class MovieDaoTest {
 
@@ -46,12 +48,57 @@ public class MovieDaoTest {
 		assertTrue(avengers.getName().equals("Avengers"));		
 	}
 	@Test
-	public void testfindMovieById() throws SQLException{
+	public void testFindMovieById() throws SQLException{
 		Movie movie = movieDao.findMovieById(2);
 		System.out.println(movie);
 		assertFalse(movie.getName().isEmpty());
 		assertTrue(movie.getId()==2);
 		
 	}
-
+	
+	@Test
+	public void testCreateMovieAndDeleteMovie() throws SQLException {
+		
+		Movie movie = new Movie("testName", 4651348, 8765131);
+		movieDao.createMovie(movie);
+		long budget = movieDao.findMoviesByName("testName").iterator().next().getBudget();
+		assertTrue( budget == 8765131);
+		int id = movie.getId();
+		movieDao.deleteMovie(id);
+		assertTrue(movieDao.findMoviesByName("testName").isEmpty());
+		
+	}
+	
+	@Test
+	public void testCreateFullMovieAndDeleteMovie() throws SQLException {
+		
+		Movie movie = new Movie("testNameFull", 4651348, 8765131,"we are doing a test");
+		movieDao.createFullMovie(movie);
+		long budget = movieDao.findMoviesByName("testNameFull").iterator().next().getBudget();
+		assertTrue( budget == 8765131);
+		int id = movie.getId();
+		movieDao.deleteMovie(id);
+		assertTrue(movieDao.findMoviesByName("testNameFull").isEmpty());
+	}
+	
+	@Test
+	public void testPutHeroInMovieAndDeleteIt() throws SQLException {
+		
+		Movie movie = new Movie("testNameFullHero", 4651348, 8765131);
+		movieDao.createMovie(movie);
+		int movieId = movie.getId();
+		Hero hero = new Hero("TestHero","TestHeroIRL");
+		HeroDao heroDao = new HeroDao();
+		heroDao.createHero(hero);
+		int heroId = hero.getId();
+		movieDao.putHeroInMovie(heroId, movieId);
+		MoviesHeroesDao moviesHeroesDao = new MoviesHeroesDao();
+		assertTrue(moviesHeroesDao.findHeroesbyMovies("testNameFullHero").contains("TestHero"));
+		movieDao.deleteHeroInMovie(movieId, heroId);
+		assertFalse(moviesHeroesDao.findHeroesbyMovies("testNameFullHero").contains("TestHero"));
+		movieDao.deleteMovie(movieId);
+		heroDao.deleteHero(hero);
+	}
+	
+	
 }
