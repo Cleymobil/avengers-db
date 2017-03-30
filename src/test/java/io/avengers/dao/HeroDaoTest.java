@@ -79,7 +79,7 @@ public class HeroDaoTest {
 	}
 	
 	@Test
-	public void testNewHero() throws SQLException {
+	public void testCreateModifyDeleteHero() throws SQLException {
 		int testId=dao.createHero(test);
 		assertTrue(testId!=0);
 		test= dao.findHeroesById(testId);
