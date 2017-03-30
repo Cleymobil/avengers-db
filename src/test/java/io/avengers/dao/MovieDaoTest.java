@@ -43,8 +43,14 @@ public class MovieDaoTest {
 		assertFalse(movies.size() == 3);
 
 		Movie avengers = movieDao.findMoviesByName("Avengers").iterator().next();
-		assertTrue(avengers.getName().equals("Avengers"));
-
+		assertTrue(avengers.getName().equals("Avengers"));		
+	}
+	@Test
+	public void testfindMovieById() throws SQLException{
+		Movie movie = movieDao.findMovieById(2);
+		System.out.println(movie);
+		assertFalse(movie.getName().isEmpty());
+		assertTrue(movie.getId()==2);
 		
 	}
 
