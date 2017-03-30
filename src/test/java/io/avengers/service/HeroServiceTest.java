@@ -16,7 +16,7 @@ public class HeroServiceTest {
 
 	HeroService heroService;
 
-	Hero test = new Hero(0,"tonton1");
+	Hero test = new Hero("tonton1", "tuntun",2);
 	
 	@Before
 	public void setUp() throws Exception {
@@ -47,10 +47,13 @@ public class HeroServiceTest {
 	}
 	@Test
 	public void testNewHero() throws SQLException {
-		Hero hero=heroService.createHero(test);
-		hero.setIrl("tururu");
-		assertTrue(hero.getId()!=0);
-		heroService.deleteHero(hero);
-		
+		Hero hero1=heroService.createHero(test);
+		assertTrue(hero1.getId()>0);
+		heroService.removeTeamFromHero(hero1);
+		heroService.changeHeroName(hero1.getId(), "Manolo");
+		heroService.deleteHero(hero1);
 	}
+	
+	
+	
 }

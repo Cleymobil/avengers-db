@@ -1,4 +1,4 @@
-package io.avengers.dao;
+package io.avengers.service;
 
 import static org.junit.Assert.*;
 
@@ -10,25 +10,28 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class HeroesMoviesDaoTest {
-	HeroesMoviesDao heroesMoviesDao;
-	Connection connect;
+import io.avengers.domain.Hero;
+
+public class HeroesMoviesServiceTest {
+
+	HeroesMoviesService heroesMoviesService;
+
+	Hero test = new Hero("tonton1", "tuntun", 2);
 
 	@Before
 	public void setUp() throws Exception {
-		heroesMoviesDao = new HeroesMoviesDao();
-		connect = heroesMoviesDao.connectToMySql();
+		heroesMoviesService = new HeroesMoviesService();
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		connect.close();
 	}
-	
+
 	@Test
 	public void testFindMoviesByHeroesname() throws SQLException {
 
-		assertTrue(heroesMoviesDao.findMoviesByHeroesname("Spider").size() > 1);
+		assertTrue(heroesMoviesService.findMoviesByHeroesname("Spider").size() > 1);
 
 	}
 

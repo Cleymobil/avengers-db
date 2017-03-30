@@ -19,7 +19,7 @@ public class Hero {
 	String irl;
 	int teamId;
 
-	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
+	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture,
 			String abilities, String history) {
 		this.id = id;
 		this.name = name;
@@ -33,12 +33,12 @@ public class Hero {
 		this.irl = null;
 	}
 
-	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
+	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture,
 			String abilities, String history, String team) {
 		this.team = team;
 	}
 
-	public Hero(int id, String name, Sex sex, String realName, long likes, long dislikes, byte[] picture,
+	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture,
 			String abilities, String history, int teamId) {
 		this.teamId = teamId;
 	}
@@ -54,8 +54,18 @@ public class Hero {
 	public Hero(int id, String name) {
 
 	}
+	
+	public Hero(int id, String name, String irl) {
 
+	}
+	
 	public Hero() {
+
+	}
+	public Hero(String name, String irl) {
+
+	}
+	public Hero(String name, String irl, int teamId) {
 
 	}
 
