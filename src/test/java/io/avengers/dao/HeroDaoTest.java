@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.mysql.jdbc.AssertionFailedException;
+
 import io.avengers.domain.Hero;
 
 public class HeroDaoTest {
@@ -34,6 +36,7 @@ public class HeroDaoTest {
 	@Test
 	public void testFindAll() throws SQLException {
 		assertTrue(dao.findAll().size() > 5);
+		assertNotNull(dao.findAll());
 	}
 
 	@Test
@@ -41,8 +44,12 @@ public class HeroDaoTest {
 
 		Hero spiderman = dao.findHeroesByName("Spider").iterator().next();
 			
+		assertNotNull(dao.findHeroesByName("Spider"));
+	
 		assertTrue(dao.findHeroesByName("Spider").size() == 1);
 		assertFalse(dao.findHeroesByName("Spider").size() == 3);
+		
+		
 
 		assertTrue(spiderman.getName().contains("man"));
 				
@@ -72,7 +79,7 @@ public class HeroDaoTest {
 	}
 	
 	@Test
-	public void testNewHero() throws SQLException {
+	public void testCreateModifyDeleteHero() throws SQLException {
 		int testId=dao.createHero(test);
 		assertTrue(testId!=0);
 		test= dao.findHeroesById(testId);
