@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,14 +34,16 @@ public class MovieDaoTest {
 	public void testFindAll() throws SQLException {
 		assertTrue(movieDao.findAll().size() > 3);
 	}
-	@Ignore
+	
 	@Test
 	public void testFindMoviesByName() throws Exception {
-
-		assertTrue(movieDao.findMoviesByName("Avengers").size() == 1);
-		assertFalse(movieDao.findMoviesByName("Avengers").size() == 3);
+		Set<Movie> movies = movieDao.findMoviesByName("enger");
+		System.out.println(movies);
+		assertTrue(movies.size() == 1);
+		assertFalse(movies.size() == 3);
 
 		Movie avengers = movieDao.findMoviesByName("Avengers").iterator().next();
+		assertTrue(avengers.getName().equals("Avengers"));
 
 		
 	}

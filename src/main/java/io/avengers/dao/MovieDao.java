@@ -37,22 +37,18 @@ public class MovieDao extends MarvelDao {
 
 	public Set<Movie> findMoviesByName(String term) throws SQLException {
 
-		String query = "SELECT * FROM movie m WHERE name LIKE '?' ORDER BY m.name";
+		String query = "SELECT * FROM movie m WHERE name LIKE ? ORDER BY m.name";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
 		PreparedStatement statement = connect.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		statement.setString(1, "%" + term + "%");
-
-		ResultSet resultSet = statement.getGeneratedKeys();
-
+		ResultSet resultSet = statement.executeQuery();
 		Set<Movie> movies = new HashSet<>();
 
 		while (resultSet.next()) {
-
 			movies.add(resultSetToMovie(resultSet));
-
 		}
 
 		connect.close();
