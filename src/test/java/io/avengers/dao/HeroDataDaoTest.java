@@ -28,11 +28,11 @@ public class HeroDataDaoTest {
 	public void tearDown() throws Exception {
 		connect.close();
 	}
-	@Ignore
+	
 	@Test
 	public void testFindHeroData() throws SQLException {
 		assertTrue(dao.findHeroData("Hulk").getIrl().equals("Bruce Banner"));
-		assertTrue(dao.findHeroData("Wolverine").getTeam().equals("Xmen"));
+		assertTrue(dao.findHeroData("Wolverine").getTeam().equals("X-men"));
 		
 	
 	}
