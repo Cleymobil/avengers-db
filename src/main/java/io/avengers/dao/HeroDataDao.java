@@ -59,27 +59,5 @@ public class HeroDataDao extends MarvelDao{
 		return h;
 
 	}
-/*
-	Hero resultSetToHero(ResultSet resultSet) {
 
-		try {
-			int id = resultSet.getInt("id");
-			String name = resultSet.getString("name");
-			String sSex = resultSet.getString("sex");
-			Long likes = resultSet.getLong("likes");
-			Long dislikes = resultSet.getLong("dislikes");
-			byte[] picture = resultSet.getBytes("picture");
-			String abilities = resultSet.getString("abilities");
-			String history = resultSet.getString("history");
-
-			Hero h = new Hero(id, name, Sex.O, likes, dislikes, picture, abilities, history);
-
-			return h;
-
-		} catch (Exception e) {
-			throw new IllegalStateException("Database has been compromised: " + e.getMessage());
-		}
-
-	}
-	*/
 }
