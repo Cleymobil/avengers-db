@@ -52,26 +52,22 @@ public class HeroServiceTest {
 	}
 	@Test
 	public void testCreateModifyDeleteHero() throws SQLException {
-		/*
-		TeamDao mock = Mockito.mock(TeamDao.class);
-		Team mockedTeam = new Team();
-		mockedTeam.setId(1);
-		mockedTeam.setName("fake");
-		TeamService ts = new TeamService();
-		Mockito.when(ts.findTeamById(1).thenReturn(mockedTeam));
-		Team t = ts.fin
-		*/
-		
+	
 		int heroid=heroService.createHero(test).getId();
-		
-		//assertEquals(hero1.getName(), "tonton2");
 		
 		assertTrue(heroid>0);
 		test=(heroService.findHeroesById(heroid));
+		assertTrue(test.getId()==heroid);
+		assertNotNull(test.getTeamId());
+		
 		heroService.removeTeamFromHero(test);
+		assertNull(test.getTeamId());
+		
 		heroService.changeHeroName(heroid, "Manolo1");
+		assertTrue(test.getName().equals("Manolo1"));
+		
 		heroService.changeHeroName(heroid, "tonton2");
-		heroService.deleteHero(test);
+		heroService.deleteHero(heroService.findHeroesById(heroid));
 		assertTrue(heroService.findHeroesByName("tonton2").isEmpty());
 		
 		
