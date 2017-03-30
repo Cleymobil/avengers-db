@@ -46,7 +46,7 @@ public class HeroServiceTest {
 		assertFalse(heroService.findHeroesById(1).getName().equals("Hulk"));
 	}
 	@Test
-	public void testNewHero() throws SQLException {
+	public void testCreateModifyDeleteHero() throws SQLException {
 		Hero hero1=heroService.createHero(test);
 		assertTrue(hero1.getId()>0);
 		heroService.removeTeamFromHero(hero1);
