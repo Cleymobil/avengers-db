@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -30,11 +31,11 @@ public class HeroServiceTest {
 		assertTrue(heroService.findAll().size()>1);
 		assertFalse(heroService.findAll().size()<0);
 	}
-	@ignore
+	@Ignore
 	@Test
 	public void testFindHeroesByName(){
-		asserTrue(heroService.findHeroesByName("Spider").iterator().next());
-		assertFalse(heroService.findAll().size()<0);
+		assertTrue(heroService.findHeroesByName("Spider").size()==1);
+		;
 	}
 
 }
