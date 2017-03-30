@@ -47,6 +47,13 @@ public class Hero {
 			String history) {
 
 	}
+	public Hero(int id, String name, Long likes, Long dislikes, byte[] picture, String abilities,
+			String history) {
+
+	}
+	public Hero(int id, String name) {
+
+	}
 
 	public Hero() {
 
