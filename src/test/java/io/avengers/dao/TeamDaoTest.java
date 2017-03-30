@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import io.avengers.domain.Hero;
 import io.avengers.domain.Team;
@@ -89,9 +90,18 @@ public class TeamDaoTest {
 		assertTrue(dao.findTeamHeroes(1).size()!=0);
 		assertTrue(dao.findTeamHeroes(15886523).size()==0);
 		
+		/*
+		Hero mockedHero = new Hero();
+		mockedHero.setName("Toto");
+		
+		HeroDao mock = Mockito.mock(HeroDao.class);
+		Mockito.when(mock.findHeroesByName("Toto").iterator().next()).thenReturn(mockedHero);
+		Hero toto = mock.findHeroesByName("Toto").iterator().next();
+		
+		assertTrue(toto.getName().equals(mockedHero.getName()));
+		*/
 		
 		Hero ironMan = heroDao.findHeroesByName("Ironman").iterator().next();
-		
 		boolean found = false;
 		for (Hero h : dao.findTeamHeroes(1)) {
 			if (h.equals(ironMan)) {
