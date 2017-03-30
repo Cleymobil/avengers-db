@@ -34,21 +34,22 @@ public class HeroDaoTest {
 	public void testFindAll() throws SQLException {
 		assertTrue(dao.findAll().size() > 5);
 	}
-	@Ignore
+
 	@Test
-	public void testFindHeroesByName() throws Exception {
+	public void testFindHeroesByName() throws SQLException {
 
-		assertTrue(dao.findHeroesByName("SpiderMan").size() == 1);
-		assertFalse(dao.findHeroesByName("SpiderMan").size() == 3);
+		Hero spiderman = dao.findHeroesByName("Spider").iterator().next();
+			
+		assertTrue(dao.findHeroesByName("Spider").size() == 1);
+		assertFalse(dao.findHeroesByName("Spider").size() == 3);
 
-		Hero spiderMan = dao.findHeroesByName("SpiderMan").iterator().next();
-
-		assertTrue(dao.findHeroesByName("i").contains(spiderMan));
-		assertFalse(dao.findHeroesByName("o").contains(spiderMan));
+		assertTrue(spiderman.getName().contains("man"));
+				
+		assertFalse(spiderman.getName().contains("o"));
 
 		boolean found = false;
 		for (Hero h : dao.findHeroesByName("man")) {
-			if (h.equals(spiderMan)) {
+			if (h.equals(spiderman)) {
 				found = true;
 			}
 		}
@@ -56,7 +57,7 @@ public class HeroDaoTest {
 
 		boolean found1 = false;
 		for (Hero h : dao.findHeroesByName("men")) {
-			if (h.equals(spiderMan)) {
+			if (h.equals(spiderman)) {
 				found1 = true;
 			}
 		}
