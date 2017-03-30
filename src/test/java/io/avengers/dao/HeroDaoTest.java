@@ -18,7 +18,8 @@ public class HeroDaoTest {
 
 	HeroDao dao;
 	Connection connect;
-
+	Hero test = new Hero(0,"tonton1");
+	
 	@Before
 	public void setUp() throws Exception {
 		dao = new HeroDao();
@@ -64,5 +65,22 @@ public class HeroDaoTest {
 		assertFalse(found1);
 
 	}
-
+	@Test
+	public void testFindHeroesById() throws SQLException{
+		assertTrue(dao.findHeroesById(1).getName().equals("Spiderman"));
+		assertFalse(dao.findHeroesById(1).getName().equals("Hulk"));
+	}
+	
+	@Test
+	public void testNewHero() throws SQLException {
+		int testId=dao.createHero(test);
+		assertTrue(testId!=0);
+		test= dao.findHeroesById(testId);
+		test.setIrl("tururu");
+		dao.CreateHeroIrl(test);
+		dao.putHeroInTeam(2, testId);
+		dao.deleteHero(test);
+		
+	}
+	
 }

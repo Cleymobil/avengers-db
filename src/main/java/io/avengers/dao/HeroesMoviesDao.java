@@ -8,20 +8,18 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
 public class HeroesMoviesDao extends MarvelDao {
 
 	public Set<String> findMoviesByHeroesname(String term) throws SQLException {
 
-		String query = "SELECT m.name FROM movie_hero mh JOIN heroes h ON mh.id_hero=h.id JOIN movie m ON m.id=mh.id_movie WHERE h.name LIKE '?' ORDER BY m.date; ";
+		String query = "SELECT m.name FROM movie_hero mh JOIN heroes h ON mh.id_hero=h.id JOIN movie m ON m.id=mh.id_movie WHERE h.name LIKE ?; ";
 
 		// port 3306, no password
 		Connection connect = connectToMySql();
 
-		PreparedStatement statement = connect.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-		statement.setString(1, "%" + term + "%");
-		ResultSet resultSet = statement.getGeneratedKeys();
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setString(1, '%' + term + '%');
+		ResultSet resultSet = statement.executeQuery();
 
 		Set<String> moviesHeroes = new HashSet<>();
 
@@ -34,10 +32,11 @@ public class HeroesMoviesDao extends MarvelDao {
 		return moviesHeroes;
 
 	}
+
 	private String resultSetToHeroesMovies(ResultSet resultSet) {
 
 		try {
-			
+
 			String moviesName = resultSet.getString("name");
 			return moviesName;
 

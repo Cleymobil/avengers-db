@@ -24,17 +24,12 @@ public class HeroesMoviesDaoTest {
 	public void tearDown() throws Exception {
 		connect.close();
 	}
-	@Ignore
+	
 	@Test
 	public void testFindMoviesByHeroesname() throws SQLException {
-		boolean movieFound = false;
-		assertTrue(heroesMoviesDao.findMoviesByHeroesname("Spiderman").size() >= 1);
-		for (String h : heroesMoviesDao.findMoviesByHeroesname("Spiderman")) {
-			if (h.equals("Spider-Man")) {
-				movieFound = true;
-			}
-		}
-		assertTrue(movieFound);
+		
+		assertTrue(heroesMoviesDao.findMoviesByHeroesname("Spider").size() > 1);
+		
 	}
 
 }
