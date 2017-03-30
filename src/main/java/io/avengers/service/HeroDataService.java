@@ -10,7 +10,7 @@ public class HeroDataService {
 	IllegalStateException stateException = new IllegalStateException("There is an error in the database please try again later");
 	
 	public Hero findHeroData(String term) {
-		
+				
 		try {
 			return new HeroDataDao().findHeroData(term);
 			

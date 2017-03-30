@@ -33,6 +33,8 @@ public class HeroesMoviesServiceTest {
 
 		assertTrue(heroesMoviesService.findMoviesByHeroesname("Spider").size() > 1);
 
+		assertTrue(heroesMoviesService.findMoviesByHeroesname("").isEmpty());
 	}
+	
 
 }
