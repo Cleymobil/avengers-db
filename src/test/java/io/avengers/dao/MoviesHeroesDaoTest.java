@@ -2,6 +2,8 @@ package io.avengers.dao;
 
 import static org.junit.Assert.*;
 import java.sql.Connection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,11 +24,13 @@ public class MoviesHeroesDaoTest {
 	public void tearDown() throws Exception {
 		connect.close();
 	}
-	@Ignore 
+
 	@Test
 	public void testFindHeroesbyMovies() throws Exception {
-		assertTrue(moviesHeroesDao.findHeroesbyMovies("Avengers").size() > 3);
-		assertTrue(moviesHeroesDao.findHeroesbyMovies("Avengers").contains("Hulk"));
+		Set<String> heroesMovies = moviesHeroesDao.findHeroesbyMovies("Avengers");
+		System.out.println(heroesMovies);
+		assertTrue(heroesMovies.size() > 3);
+		assertTrue(heroesMovies.contains("Hulk"));
 	}
 
 }
