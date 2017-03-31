@@ -7,15 +7,22 @@ import java.sql.SQLException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import io.avengers.domain.Hero;
+import io.avengers.reset.ResetApplication;
 
 public class HeroDataDaoTest {
 	
 	HeroDataDao dao;
 	Connection connect;
+	
+	@BeforeClass
+	public static void deleteDataBase() throws Exception {
+		ResetApplication.main(new String[]{});
+	}
 
 
 	@Before
