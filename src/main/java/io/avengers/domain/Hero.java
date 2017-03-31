@@ -63,6 +63,10 @@ public class Hero {
 
 	}
 	
+	public Hero(String name, Long likes, Long dislikes) {
+
+	}
+	
 	public Hero(int id, String name, String irl) {
 
 	}

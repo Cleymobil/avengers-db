@@ -90,7 +90,6 @@ public class HeroDaoTest {
 		dao.CreateHeroIrl(test);
 		dao.putHeroInTeam(2, testId);
 		dao.deleteHero(test);
-		
 	}
 	
 }
