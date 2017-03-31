@@ -79,12 +79,12 @@ public class MovieDao extends MarvelDao {
 		return movie;
 
 	}
-
+/*
 	public Set<Movie> findMovieData(String name) throws SQLException {
 		Set<Movie> movieData = findMoviesByName(name);
 		return movieData;
 	}
-
+*/
 	Movie resultSetToMovie(ResultSet resultSet) {
 
 		try {
