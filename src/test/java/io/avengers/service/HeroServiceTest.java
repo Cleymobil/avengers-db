@@ -56,6 +56,9 @@ public class HeroServiceTest {
 	@Test
 	public void testCreateModifyDeleteHero() throws SQLException {
 	
+		Long likes = (long) 987;
+		Long dislikes = (long) 98;
+		
 		Hero testHero = new Hero("tonton2" , likes , dislikes);
 		
 		
