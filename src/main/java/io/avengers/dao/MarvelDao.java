@@ -17,7 +17,7 @@ public class MarvelDao {
 			}
 		}
 	}
-	Connection connectToMySql() {
+	public Connection connectToMySql() {
 		Connection connect;
 		try {
 			connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/marvel", "root", "");

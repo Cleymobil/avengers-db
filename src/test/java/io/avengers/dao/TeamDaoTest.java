@@ -83,7 +83,7 @@ public class TeamDaoTest {
 		
 	
 	}
-	
+	@Ignore
 	@Test
 	public void testFindTeamHeroes() throws Exception {
 
@@ -112,6 +112,7 @@ public class TeamDaoTest {
 		
 		
 	}
+	@Ignore
 	@Test
 	public void testCreateTeam()throws Exception {
 		
