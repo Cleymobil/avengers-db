@@ -7,12 +7,21 @@ import java.sql.SQLException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import io.avengers.reset.ResetApplication;
 
 public class HeroesMoviesDaoTest {
 	HeroesMoviesDao heroesMoviesDao;
 	Connection connect;
+
+	
+	@BeforeClass
+	public static void deleteDataBase() throws Exception {
+		ResetApplication.main(new String[]{});
+	}
 
 	@Before
 	public void setUp() throws Exception {
