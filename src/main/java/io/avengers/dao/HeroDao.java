@@ -84,7 +84,7 @@ public class HeroDao extends MarvelDao {
 
 	public int createHero(Hero hero) throws SQLException {
 
-		String query = "INSERT INTO heroes (name, sex, likes, dislikes, picture, abilities, history) VALUES (?,?,?,?,null,?,?);";
+		String query = "INSERT INTO heroes (name, sex , likes, dislikes, picture, abilities, history) VALUES (?,?,?,?,null,?,?);";
 
 		Connection connect = connectToMySql();
 		PreparedStatement statement = connect.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);

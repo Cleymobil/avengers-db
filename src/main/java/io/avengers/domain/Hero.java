@@ -43,14 +43,22 @@ public class Hero {
 		this.teamId = teamId;
 	}
 
-	public Hero(int id, String name, Sex o, Long likes, Long dislikes, byte[] picture, String abilities,
+	public Hero(int id, String name, Sex sex, Long likes, Long dislikes, byte[] picture, String abilities,
 			String history) {
 
 	}
+
 	public Hero(int id, String name, Long likes, Long dislikes, byte[] picture, String abilities,
 			String history) {
 
 	}
+	
+	public Hero(String name, Long likes, Long dislikes,  String abilities,
+			String history) {
+
+	}
+	
+	
 	public Hero(int id, String name) {
 
 	}
