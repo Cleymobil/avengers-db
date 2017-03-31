@@ -9,19 +9,26 @@ import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import com.mysql.jdbc.AssertionFailedException;
 
 import io.avengers.domain.Hero;
+import io.avengers.reset.ResetApplication;
 
 public class HeroDaoTest {
 
 	HeroDao dao;
 	Connection connect;
-	Hero test = new Hero(0,"tonton1");
-	
+	Hero test = new Hero(0, "tonton1");
+
+	@BeforeClass
+	public static void deleteDataBase() throws Exception {
+		ResetApplication.main(new String[]{});
+	}
+
 	@Before
 	public void setUp() throws Exception {
 		dao = new HeroDao();
@@ -43,16 +50,14 @@ public class HeroDaoTest {
 	public void testFindHeroesByName() throws SQLException {
 
 		Hero spiderman = dao.findHeroesByName("Spider").iterator().next();
-			
+
 		assertNotNull(dao.findHeroesByName("Spider"));
-	
+
 		assertTrue(dao.findHeroesByName("Spider").size() == 1);
 		assertFalse(dao.findHeroesByName("Spider").size() == 3);
-		
-		
 
 		assertTrue(spiderman.getName().contains("man"));
-				
+
 		assertFalse(spiderman.getName().contains("o"));
 
 		boolean found = false;
@@ -72,25 +77,26 @@ public class HeroDaoTest {
 		assertFalse(found1);
 
 	}
+
 	@Test
-	public void testFindHeroesById() throws SQLException{
+	public void testFindHeroesById() throws SQLException {
 		assertTrue(dao.findHeroesById(1).getName().equals("Spiderman"));
 		assertFalse(dao.findHeroesById(1).getName().equals("Hulk"));
 	}
-	//TODO
+
+	// TODO
 	@Ignore
 	@Test
 	public void testCreateModifyDeleteHero() throws SQLException {
-		int testId=dao.createHero(test);
+		int testId = dao.createHero(test);
 		System.out.println(testId);
-		assertTrue(testId!=0);
-		test= dao.findHeroesById(testId);
+		assertTrue(testId != 0);
+		test = dao.findHeroesById(testId);
 		System.out.println(test.getName());
 		test.setIrl("tururu");
 		dao.CreateHeroIrl(test);
 		dao.putHeroInTeam(2, testId);
 		dao.deleteHero(test);
-		
 	}
-	
+
 }
