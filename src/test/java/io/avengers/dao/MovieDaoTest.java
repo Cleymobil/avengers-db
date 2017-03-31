@@ -65,7 +65,7 @@ public class MovieDaoTest {
 		assertTrue( budget == 8765131);
 		int id = movie.getId();
 		movieDao.deleteMovie(id);
-		assertTrue(movieDao.findMoviesByName("testName").isEmpty());
+		assertTrue(movieDao.findMovieById(id)==null);
 		
 	}
 	
@@ -78,7 +78,7 @@ public class MovieDaoTest {
 		assertTrue( budget == 8765131);
 		int id = movie.getId();
 		movieDao.deleteMovie(id);
-		assertTrue(movieDao.findMoviesByName("testNameFull").isEmpty());
+		assertTrue(movieDao.findMovieById(id)==null);
 	}
 	
 	@Test
