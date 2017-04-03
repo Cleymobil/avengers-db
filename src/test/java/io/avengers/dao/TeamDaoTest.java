@@ -9,12 +9,14 @@ import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import io.avengers.domain.Hero;
 import io.avengers.domain.Team;
+import io.avengers.reset.ResetApplication;
 
 public class TeamDaoTest {
 
@@ -22,6 +24,11 @@ public class TeamDaoTest {
 	HeroDao heroDao;
 	Connection connect;
 
+	@BeforeClass
+	public static void deleteDataBase() throws Exception {
+		ResetApplication.main(new String[]{});
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		dao = new TeamDao();
@@ -101,16 +108,15 @@ public class TeamDaoTest {
 		assertTrue(toto.getName().equals(mockedHero.getName()));
 		*/
 		
-		Hero ironMan = heroDao.findHeroesByName("Ironman").iterator().next();
+		Hero hulk = heroDao.findHeroesByName("Hulk").iterator().next();
 		boolean found = false;
 		for (Hero h : dao.findTeamHeroes(1)) {
-			if (h.equals(ironMan)) {
+			if (h.equals(hulk)) {
 				found = true;
 			}
 		}
 		assertTrue(found);
-		
-		
+			
 	}
 	
 	@Test
