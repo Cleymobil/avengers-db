@@ -3,11 +3,19 @@ package io.avengers.domain;
 import java.util.Arrays;
 import java.util.Base64;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlTransient;
 
+@Entity
 public class Movie {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+
 	String name;
 	byte[] picture;
 	java.util.Date date;
@@ -24,6 +32,7 @@ public class Movie {
 		this.history = history;
 
 	}
+
 	public Movie(String name, long gross, long budget, String history) {
 
 		this.name = name;

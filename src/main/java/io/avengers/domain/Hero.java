@@ -3,24 +3,39 @@ package io.avengers.domain;
 import java.util.Arrays;
 import java.util.Base64;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlTransient;
 
+@Entity
 public class Hero {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+
 	String name;
-	Sex sex=Sex.O;
+	Sex sex = Sex.O;
 	long likes;
 	long dislikes;
 	byte[] picture;
 	String abilities;
 	String history;
 	String team;
+	@ManyToOne
+	Team t;
 	String irl;
 	int teamId;
 
-	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture,
-			String abilities, String history) {
+	public Hero() {
+
+	}
+
+	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture, String abilities,
+			String history) {
 		this.id = id;
 		this.name = name;
 		this.sex = sex;
@@ -33,52 +48,35 @@ public class Hero {
 		this.irl = null;
 	}
 
-	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture,
-			String abilities, String history, String team) {
-		this.team = team;
-	}
-
-	public Hero(int id, String name, Sex sex, String irl, long likes, long dislikes, byte[] picture,
-			String abilities, String history, int teamId) {
+	public Hero(String name, String irl, int teamId) {
+		this.name = name;
+		this.irl = irl;
 		this.teamId = teamId;
 	}
 
-	public Hero(int id, String name, Sex sex, Long likes, Long dislikes, byte[] picture, String abilities,
+	public Hero(int id, String name, Sex sex, long likes, long dislikes, byte[] picture, String abilities,
 			String history) {
+		this.id = id;
+		this.name = name;
+		this.irl = irl;
+		this.sex = sex;
+		this.likes = likes;
+		this.dislikes = dislikes;
+		this.picture = picture;
+		this.abilities = abilities;
+		this.history = history;
 
 	}
 
-	public Hero(int id, String name, Long likes, Long dislikes, byte[] picture, String abilities,
-			String history) {
-
+	public Hero(String name, long likes, long dislikes) {
+		this.name = name;
+		this.likes = likes;
+		this.dislikes = dislikes;
 	}
-	
-	public Hero(String name, Long likes, Long dislikes,  String abilities,
-			String history) {
 
-	}
-	
-	
 	public Hero(int id, String name) {
-
-	}
-	
-	public Hero(String name, Long likes, Long dislikes) {
-
-	}
-	
-	public Hero(int id, String name, String irl) {
-
-	}
-	
-	public Hero() {
-
-	}
-	public Hero(String name, String irl) {
-
-	}
-	public Hero(String name, String irl, int teamId) {
-
+		this.id = id;
+		this.name = name;
 	}
 
 	@Override
@@ -175,6 +173,14 @@ public class Hero {
 		this.dislikes = dislikes;
 	}
 
+	public Team getT() {
+		return t;
+	}
+
+	public void setT(Team t) {
+		this.t = t;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -241,7 +247,7 @@ public class Hero {
 
 	@XmlTransient
 	public String getPictureString() {
-		if (picture== null){
+		if (picture == null) {
 			return "";
 		}
 		byte[] encodedImage = Base64.getEncoder().encode(picture);

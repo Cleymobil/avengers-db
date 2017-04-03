@@ -1,50 +1,73 @@
 package io.avengers.domain;
 
-public class Team {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+public class Team {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+
 	String name;
 	byte[] picture;
 	String history;
-	
-	public Team(int id, String name, byte[] picture, String history){
-		
-		this.id= id;
-		this.name=name;
-		this.picture=picture;
-		this.history=history;
-		
+
+	public Team(int id, String name, byte[] picture, String history) {
+
+		this.id = id;
+		this.name = name;
+		this.picture = picture;
+		this.history = history;
+
 	}
 	
-	public Team(){
-		picture=null;
+
+	public Team(String name, String history) {
+		this.name = name;
+		this.history = history;
 	}
-	
+
+
+	public Team() {
+		picture = null;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public byte[] getPicture() {
 		return picture;
 	}
+
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
+
 	public String getHistory() {
 		return history;
 	}
+
 	public void setHistory(String history) {
 		this.history = history;
 	}
-	
+
 	@Override
 	public String toString() {
 		return name;
@@ -71,8 +94,5 @@ public class Team {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }

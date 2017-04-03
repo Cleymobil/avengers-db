@@ -87,7 +87,9 @@ public class MovieDaoTest {
 		Movie movie = new Movie("testNameFullHero", 4651348, 8765131);
 		movieDao.createMovie(movie);
 		int movieId = movie.getId();
-		Hero hero = new Hero("TestHero","TestHeroIRL");
+		
+		// check constructor
+		Hero hero = new Hero("TestHero","TestHeroIRL",0);
 		HeroDao heroDao = new HeroDao();
 		heroDao.createHero(hero);
 		int heroId = hero.getId();
